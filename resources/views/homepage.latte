@@ -1,0 +1,338 @@
+{layout '_layout.latte'}
+
+{block content}
+    <div id="wrapper">
+        <header id="banner" class="scrollto clearfix">
+            <div id="header" class="nav-collapse">
+                <div class="row clearfix">
+                    <div class="col-1">
+                        <div id="logo">
+                            <a href="#"><img src="{asset('images/logo.png')}" id="banner-logo" alt="Landing Page"/></a>
+                            <img src="{asset('images/logo-1.png')}" id="navigation-logo" alt="Landing Page"/>
+                        </div>
+                        <aside>
+                            <ul class="social-icons">
+                                <li style="margin-right: 10px">
+                                    <a target="_blank" title="Telephone" href="tel:+420317892865">
+                                        <i class="fa-solid fa-phone-volume fa-xl"></i>
+                                    </a>
+                                </li>
+                                <li style="margin-right: 10px">
+                                    <a target="_blank" title="Email" href="mailto:fyzioterapievlasim@seznam.cz">
+                                        <i class="fa-solid fa-at fa-xl"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a target="_blank" title="GPS" href="https://maps.app.goo.gl/sw4Sb45ZN9jjeCRR8">
+                                        <i class="fa-solid fa-location-dot fa-xl"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </aside>
+                        <nav id="nav-main">
+                            <ul>
+                                <li>
+                                    <a href="#about">O nás</a>
+                                </li>
+                                <li>
+                                    <a href="#equipment">Vybavení</a>
+                                </li>
+                                <li>
+                                    <a href="#therapists">Terapeuti</a>
+                                </li>
+                                <li>
+                                    <a href="#policy">Smluvní pojišťovny</a>
+                                </li>
+                                <li>
+                                    <a href="#pricing">Ceník</a>
+                                </li>
+                                <li>
+                                    <a href="#contact">Kontakt</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div id="nav-trigger"><span><i class="fa-solid fa-bars"></i></span></div>
+                        <nav id="nav-mobile"></nav>
+                    </div>
+                </div>
+            </div>
+            <div id="banner-content" class="row clearfix">
+                <div class="col-38">
+                    <div class="section-heading">
+                        <h1>Fyzioterapie</h1>
+                        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                    </div>
+                    <a href="#contact" class="button">OBJEDNAT SE</a>
+                </div>
+            </div>
+        </header>
+        <main id="content">
+            <section id="about" class="introduction scrollto">
+                <div class="row clearfix">
+                    <div class="col-3">
+                        <div class="section-heading">
+                            <h3>NAŠE SLUŽBY</h3>
+                            <h2 class="section-title">Proč nás navštívit?</h2>
+                            <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam!</p>
+                        </div>
+                    </div>
+                    <div class="col-2-3">
+                        <div class="col-2 icon-block icon-top">
+                            <div class="icon">
+                                <i class="fa-solid fa-person-walking fa-2xl"></i>
+                            </div>
+                            <div class="icon-block-description">
+                                <h4>Individuální fyzioterapie</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam!</p>
+                            </div>
+                        </div>
+                        <!--End of Icon Block-->
+
+                        <!--Icon Block-->
+                        <div class="col-2 icon-block icon-top">
+                            <div class="icon">
+                                <i class="fa-solid fa-bolt fa-2xl"></i>
+                            </div>
+                            <div class="icon-block-description">
+                                <h4>Elektroléčba</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam!</p>
+                            </div>
+                        </div>
+                        <div class="col-2 icon-block icon-top">
+                            <div class="icon">
+                                <i class="fa-solid fa-spa fa-2xl"></i>
+                            </div>
+                            <div class="icon-block-description">
+                                <h4>Manuální lymfodrenáž</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam!</p>
+                            </div>
+                        </div>
+                        <div class="col-2 icon-block icon-top">
+                            <div class="icon">
+                                <i class="fa-solid fa-tape fa-2xl"></i>
+                            </div>
+                            <div class="icon-block-description">
+                                <h4>Tejpování</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <aside id="equipment" class="row text-center scrollto clearfix" data-featherlight-equipment data-featherlight-filter="a">
+                <div class="section-heading">
+                    <h3>VYBAVENÍ</h3>
+                    <h2 class="section-title">Nakoukněte do naší ordinace</h2>
+                </div>
+                {for $i = 1; $i <= 6; $i++}
+                    <a href="images/equipment-images/mockup-{$i}.jpg" data-featherlight="image" class="col-3">
+                        <img src="{asset('images/equipment-images/mockup-'.$i.'.jpg')}?m={filemtime(public_path('images/equipment-images/mockup-'.$i.'.jpg'))}" alt=""/>
+                    </a>
+                {/for}
+            </aside>
+
+            <div id="therapists" class="scrollto clearfix">
+                <div class="row no-padding-bottom clearfix">
+                    <div class="col-3">
+                        <div class="section-heading">
+                            <h3>TERAPEUTI</h3>
+                            <h2 class="section-title">Focusing On What Matters Most</h2>
+                            <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam!</p>
+                        </div>
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                            dicta sunt explicabo.
+                        </p>
+                        <p>
+                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+                            consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet!
+                        </p>
+                        <a href="#" data-videoid="UYJ5IjBRlW8" data-videosite="youtube" class="button video link-lightbox">
+                            WATCH VIDEO <i class="fa-solid fa-play fa-2xl"></i>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <img src="images/dancer.jpg" alt="Dancer"/>
+                    </div>
+                </div>
+            </div>
+            <section id="policy" class="scrollto clearfix">
+                <div class="row clearfix">
+                    <div class="col-3">
+                        <div class="section-heading">
+                            <h3>POJIŠTĚNÍ</h3>
+                            <h2 class="section-title">Smluvní pojišťovny</h2>
+                            <p class="section-subtitle">Záleží nám na Vaší péči, a proto máme uzavřené kontrakty s těmito pojišťovnami:</p>
+                        </div>
+                    </div>
+                    <div class="col-2-3" style="display: flex;align-items: center;padding-bottom: 0">
+                        <img class="col-3 insurance" src="{asset('images/company-images/ozp.png')}" alt="Company"/>
+                        <img class="col-3 insurance" src="{asset('images/company-images/vzp.png')}" alt="Company"/>
+                        <img class="col-3 insurance" src="{asset('images/company-images/vozp.png')}" alt="Company"/>
+                    </div>
+                    <div class="col-2-3" style="display: flex;justify-content: space-evenly;align-items: center;padding-top: 0">
+                        <img class="col-3 insurance" src="{asset('images/company-images/zpmv.png')}" alt="Company"/>
+                        <img class="col-3 insurance" src="{asset('images/company-images/cpzp.png')}" alt="Company"/>
+                    </div>
+                </div>
+            </section>
+            <section id="pricing" class="scrollto clearfix">
+                <aside class="row text-center scrollto clearfix">
+                    <div class="section-heading">
+                        <h3>CENÍK</h3>
+                        <h2 class="section-title">Nabízíme</h2>
+                    </div>
+                    <div style="display: flex; justify-content: space-between">
+                        <div class="col-4 icon-block icon-top">
+                            <div class="icon">
+                                <i class="fa-solid fa-person-walking fa-2xl"></i>
+                            </div>
+                            <div class="icon-block-description">
+                                <h4>Individuální fyzioterapie</h4>
+                                <div style="min-height: 52px">
+                                    <div style="display: flex; justify-content: space-between">
+                                        <p style="margin: 0">30 min</p>
+                                        <p style="margin: 0">500 Kč</p>
+                                    </div>
+                                    <hr style="color: white; height: 1px; margin: 0">
+                                    <div style="display: flex; justify-content: space-between">
+                                        <p style="margin: 0">60 min</p>
+                                        <p style="margin: 0">1 000 Kč</p>
+                                    </div>
+                                </div>
+                                <a href="#contact" class="button">OBJEDNAT</a>
+                            </div>
+                        </div>
+                        <div class="col-4 icon-block icon-top">
+                            <div class="icon">
+                                <i class="fa-solid fa-spa fa-2xl"></i>
+                            </div>
+                            <div class="icon-block-description">
+                                <h4>Manuální lymfodrenáž</h4>
+                                <div style="display: flex; justify-content: space-between; min-height: 52px">
+                                    <p style="margin: 0">60 min</p>
+                                    <p style="margin: 0">1 000 Kč</p>
+                                </div>
+                                <a href="#contact" class="button">OBJEDNAT</a>
+                            </div>
+                        </div>
+                        <div class="col-4 icon-block icon-top">
+                            <div class="icon">
+                                <i class="fa-solid fa-person-dots-from-line fa-2xl"></i>
+                            </div>
+                            <div class="icon-block-description">
+                                <h4>Vojtova reflexní terapie</h4>
+                                <div style="display: flex; justify-content: space-between; min-height: 52px">
+                                    <p style="margin: 0">60 min</p>
+                                    <p style="margin: 0">1 000 Kč</p>
+                                </div>
+                                <a href="#contact" class="button">OBJEDNAT</a>
+                            </div>
+                        </div>
+                        <div class="col-4 icon-block icon-top">
+                            <div class="icon">
+                                <i class="fa-solid fa-bolt fa-2xl"></i>
+                            </div>
+                            <div class="icon-block-description">
+                                <h4>Elektroterapie</h4>
+                                <div style="display: flex; justify-content: center; min-height: 52px">
+                                    <p style="margin: 0">1 000 Kč</p>
+                                </div>
+                                <a href="#contact" class="button">OBJEDNAT</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-evenly">
+                        <div class="col-4 icon-block icon-top">
+                            <div class="icon">
+                                <i class="fa-solid fa-tape fa-2xl"></i>
+                            </div>
+                            <div class="icon-block-description">
+                                <h4>Tejpování</h4>
+                                <div style="min-height: 52px">
+                                    <div style="display: flex; justify-content: space-between">
+                                        <p style="margin: 0">Nalepení</p>
+                                        <p style="margin: 0">100 Kč</p>
+                                    </div>
+                                    <hr style="color: white; height: 1px; margin: 0">
+                                    <div style="display: flex; justify-content: space-between">
+                                        <p style="margin: 0">Použitý materiál à 1cm</p>
+                                        <p style="margin: 0">1,50 Kč</p>
+                                    </div>
+                                </div>
+                                <a href="#contact" class="button">OBJEDNAT</a>
+                            </div>
+                        </div>
+                        <div class="col-4 icon-block icon-top">
+                            <div class="icon">
+                                <i class="fa-solid fa-check-to-slot fa-2xl"></i>
+                            </div>
+                            <div class="icon-block-description">
+                                <h4>Potvrzení pro pojišťovnu</h4>
+                                <div style="display: flex; justify-content: center; min-height: 52px">
+                                    <p style="margin: 0">100 Kč</p>
+                                </div>
+                                <a href="#contact" class="button">OBJEDNAT</a>
+                            </div>
+                        </div>
+                        <div class="col-4 icon-block icon-top">
+                            <div class="icon">
+                                <i class="fa-solid fa-hand-holding-heart fa-2xl"></i>
+                            </div>
+                            <div class="icon-block-description">
+                                <h4>Dárkové poukazy</h4>
+                                <div style="display: flex; justify-content: center; min-height: 52px">
+                                    <p style="margin: 0">od 500 Kč</p>
+                                </div>
+                                <a href="#contact" class="button">OBJEDNAT</a>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+        </main>
+
+        <section id="contact" class="scrollto clearfix">
+            <div class="row clearfix">
+                <div class="col-3">
+                    <div class="section-heading">
+                        <h3>KONTAKT</h3>
+                        <h2 class="section-title">Kontaktujte nás</h2>
+                        <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam!</p>
+                        <p>
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                            dicta sunt explicabo.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-2-3" style="padding-left: 300px">
+                    <div style="border: 1px solid black; min-height: 60vh"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer id="landing-footer" class="clearfix">
+            <div class="row clearfix">
+                <p id="copyright" class="col-2">&copy;{date('Y')} Martin Dub</p>
+
+                <ul class="col-2 social-icons">
+                    <li>
+                        <a target="_blank" title="Facebook" href="https://www.facebook.com/username">
+                            <i class="fa-brands fa-facebook-f fa-lg"></i><span>Facebook</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+{/block}
