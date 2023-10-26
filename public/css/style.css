@@ -494,12 +494,12 @@ section {
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
-    opacity: 0.5;
+    opacity: 1;
 }
 
 #header.nav-solid .social-icons a:hover {
-    opacity: 1;
-    color: #e4473c;
+    opacity: .5;
+    color: #333;
 }
 
 /* Responsive Nav Styling */
@@ -1739,12 +1739,6 @@ blockquote {
         height: 270px !important;
     }
 
-    /* Footer */
-    #landing-footer #copyright {
-        float: left;
-        width: 50%;
-    }
-
     #landing-footer .social-icons {
         float: right;
         width: 50%;
@@ -1832,12 +1826,6 @@ blockquote {
     /* Video */
     .slvj-lightbox iframe, .slvj-lightbox object, .slvj-lightbox embed {
         height: 370px !important;
-    }
-
-    /* Footer */
-    #landing-footer #copyright {
-        float: left;
-        width: 50%;
     }
 
     #landing-footer .social-icons {
