@@ -126,12 +126,14 @@
                                                     <strong style="color: #3F994F">Jméno: </strong>{$data['name']}<br>
                                                     <strong style="color: #3F994F">Email: </strong>{$data['email']}<br>
                                                     <strong style="color: #3F994F">Telefon: </strong>{$data['phone']}<br>
-                                                    <strong style="color: #3F994F">Varianta: </strong>{$data['variant']}<br>
-                                                    {if true}
+                                                    {ifset $data['variant']}
+                                                        <strong style="color: #3F994F">Varianta: </strong>{$data['variant']}<br>
+                                                    {/ifset}
+                                                    {ifset $data['message']}
                                                         <p style="max-width: 50%;margin: 0; padding: 0">
                                                             <strong style="color: #3F994F">Text zprávy: </strong>{$data['message']}
                                                         </p>
-                                                    {/if}
+                                                    {/ifset}
                                                 </td>
                                             </tr>
                                         </table>
