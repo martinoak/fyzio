@@ -1,6 +1,6 @@
 <?php return array (
-  'announcement' => NULL,
+  'announcement' => 'Vážení zákazníci, webové stránky spouštíme o Vánocích!',
   'icon' => 'Ikona',
   'color' => 'black',
-  'background' => '#f5b648',
+  'background' => '#3f994f',
 );

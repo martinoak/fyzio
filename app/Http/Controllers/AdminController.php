@@ -17,8 +17,6 @@ class AdminController extends Controller
     {
         $config = config('fyzio');
         $config['announcement'] = $request->input('message');
-        $config['icon'] = $request->input('icon') ?? 'fa-solid fa-triangle-exclamation';
-        $config['color'] = $request->input('color') ?? 'black';
         $config['background'] = $request->input('background') ?? '#f5b648';
 
         $configFile = fopen(config_path('fyzio.php'), 'w');
