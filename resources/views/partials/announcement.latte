@@ -1,0 +1,5 @@
+{if !empty(config('fyzio.announcement'))}
+    <div style="background-color: {config('fyzio.background')|noescape}; width: 100%; font-weight: bold; text-align: center; color: {config('fyzio.color')|noescape}; margin-top: -15px; padding: 10px 0">
+        <i class="{config('fyzio.icon')|noescape}" style="color: {config('fyzio.color')|noescape}"></i> {config('fyzio.announcement')|noescape}
+    </div>
+{/if}

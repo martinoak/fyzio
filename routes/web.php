@@ -18,4 +18,5 @@ Route::get('/', [Controllers\HomepageController::class, 'index'])->name('homepag
 
 Route::post('/sendMail', [Controllers\EmailsController::class, 'sendMail'])->name('sendMail');
 
-Route::any('/admin', [Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('auth');
+Route::any('/admin', [Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::post('/update-announcement', [Controllers\AdminController::class, 'announcement'])->name('set-announcement');

@@ -1,0 +1,64 @@
+{layout '../_layout.latte'}
+
+{block head}
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.css" rel="stylesheet" />
+{/block}
+{block content}
+    <div id="wrapper">
+        {include '../partials/announcement.latte'}
+        <main id="content">
+            <section id="about" class="introduction scrollto">
+                <div class="row clearfix">
+                    <div class="col-3">
+                        <div class="section-heading">
+                            <h2 class="section-title">OZNÁMENÍ</h2>
+                            <form action="{route('set-announcement')}" method="post">
+                                {csrf_field()|noescape}
+                                <input
+                                        type="text"
+                                        name="message"
+                                        id="name"
+                                        class="contact-input"
+                                        placeholder="Zpráva"
+                                        value="{config('fyzio.announcement')|noescape}"
+                                        aria-label
+                                />
+                                <select name="icon" class="contact-input" style="padding: unset; background-color: transparent" aria-label>
+                                    <option selected hidden>Ikona</option>
+                                    <option value="fa-solid fa-triangle-exclamation"></option>
+                                    <option value="fa-solid fa-circle-info">Informace</option>
+                                    <option value="fa-solid fa-calendar-days">Událost</option>
+                                    <option value="fa-solid fa-circle-check">Potvrzení</option>
+                                </select>
+                                <ul class="grid w-full gap-2 grid-cols-3">
+                                    <li>
+                                        <input type="radio" id="hosting-small" name="background" value="#f5b648" class="hidden peer" required>Varování
+                                        <label for="hosting-small" class="inline-flex p-2 w-full bg-[#f5b648] border rounded-lg cursor-pointer peer-checked:border-4 peer-checked:border-blue-600">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold">Varování <i class="fa-solid fa-triangle-exclamation"></i> </div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="hosting-medium" name="background" value="#3f994f" class="hidden peer" required>
+                                        <label for="hosting-medium" class="inline-flex p-5 w-full bg-[#3f994f] border rounded-lg cursor-pointer peer-checked:border-4 peer-checked:border-blue-600">
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="hosting-large" name="background" value="#993231" class="hidden peer" required>
+                                        <label for="hosting-large" class="inline-flex p-5 w-full bg-[#bf3f3c] border rounded-lg cursor-pointer peer-checked:border-4 peer-checked:border-blue-600">
+                                        </label>
+                                </ul>
+
+                                <button type="submit" class="button" style="background-color: transparent">PROPSAT</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+{/block}
