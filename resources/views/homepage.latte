@@ -1,7 +1,12 @@
 {layout '_layout.latte'}
 
+{block head}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+{/block}
+
 {block content}
     <div id="wrapper">
+        <div style="background-color: #f5b648; width: 100%; font-weight: bold; text-align: center; color: white; margin-top: -15px; padding: 10px 0"><i class="fa-solid fa-triangle-exclamation" style="color: white"></i> POZOR</div>
         <header id="banner" class="scrollto clearfix">
             <div id="header" class="nav-collapse">
                 <div class="row clearfix">
@@ -14,12 +19,12 @@
                         </div>
                         <aside>
                             <ul class="social-icons">
-                                <li style="margin-right: 10px">
+                                <li>
                                     <a target="_blank" title="Telephone" href="tel:+420317892865">
                                         <i class="fa-solid fa-phone-volume fa-xl"></i>
                                     </a>
                                 </li>
-                                <li style="margin-right: 10px">
+                                <li>
                                     <a target="_blank" title="Email" href="mailto:fyzioterapievlasim@seznam.cz">
                                         <i class="fa-solid fa-at fa-xl"></i>
                                     </a>
@@ -173,12 +178,12 @@
                             <p class="section-subtitle">Záleží nám na Vaší péči, a proto máme uzavřené kontrakty s těmito pojišťovnami:</p>
                         </div>
                     </div>
-                    <div class="col-2-3" style="display: flex;align-items: center;padding-bottom: 0">
+                    <div class="col-2-3 flex" style="align-items: center;padding-bottom: 0">
                         <img class="col-3 insurance" src="{asset('images/company-images/ozp.png')}" alt="Company"/>
                         <img class="col-3 insurance" src="{asset('images/company-images/vzp.png')}" alt="Company"/>
                         <img class="col-3 insurance" src="{asset('images/company-images/vozp.png')}" alt="Company"/>
                     </div>
-                    <div class="col-2-3" style="display: flex;justify-content: space-evenly;align-items: center;padding-top: 0">
+                    <div class="col-2-3 flex" style="align-items: center;justify-content: space-evenly;padding-top: 0">
                         <img class="col-3 insurance" src="{asset('images/company-images/zpmv.png')}" alt="Company"/>
                         <img class="col-3 insurance" src="{asset('images/company-images/cpzp.png')}" alt="Company"/>
                     </div>
@@ -190,25 +195,25 @@
                         <h3>CENÍK</h3>
                         <h2 class="section-title">Nabízíme</h2>
                     </div>
-                    <div style="display: flex; justify-content: space-between">
+                    <div class="flex space-between">
                         <div class="col-4 icon-block icon-top">
                             <div class="icon">
                                 <i class="fa-solid fa-person-walking fa-2xl"></i>
                             </div>
                             <div class="icon-block-description">
                                 <h4>Individuální fyzioterapie</h4>
-                                <div style="min-height: 52px">
-                                    <div style="display: flex; justify-content: space-between">
-                                        <p style="margin: 0">30 min</p>
-                                        <p style="margin: 0">500 Kč</p>
+                                <div class="pricing-list">
+                                    <div class="flex space-between">
+                                        <p>30 min</p>
+                                        <p>500 Kč</p>
                                     </div>
-                                    <hr style="color: white; height: 1px; margin: 0">
-                                    <div style="display: flex; justify-content: space-between">
-                                        <p style="margin: 0">60 min</p>
-                                        <p style="margin: 0">1 000 Kč</p>
+                                    <hr>
+                                    <div class="flex space-between">
+                                        <p>60 min</p>
+                                        <p>1 000 Kč</p>
                                     </div>
                                 </div>
-                                <a href="#contact" class="button">OBJEDNAT</a>
+                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Individuální fyzioterapie">OBJEDNAT</a>
                             </div>
                         </div>
                         <div class="col-4 icon-block icon-top">
@@ -217,11 +222,11 @@
                             </div>
                             <div class="icon-block-description">
                                 <h4>Manuální lymfodrenáž</h4>
-                                <div style="display: flex; justify-content: space-between; min-height: 52px">
-                                    <p style="margin: 0">60 min</p>
-                                    <p style="margin: 0">1 000 Kč</p>
+                                <div class="flex space-between pricing-list">
+                                    <p>60 min</p>
+                                    <p>1 000 Kč</p>
                                 </div>
-                                <a href="#contact" class="button">OBJEDNAT</a>
+                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Manuální lymfodrenáž">OBJEDNAT</a>
                             </div>
                         </div>
                         <div class="col-4 icon-block icon-top">
@@ -230,11 +235,11 @@
                             </div>
                             <div class="icon-block-description">
                                 <h4>Vojtova reflexní terapie</h4>
-                                <div style="display: flex; justify-content: space-between; min-height: 52px">
-                                    <p style="margin: 0">60 min</p>
-                                    <p style="margin: 0">1 000 Kč</p>
+                                <div class="flex space-between pricing-list">
+                                    <p>60 min</p>
+                                    <p>1 000 Kč</p>
                                 </div>
-                                <a href="#contact" class="button">OBJEDNAT</a>
+                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Vojtova reflexní terapie">OBJEDNAT</a>
                             </div>
                         </div>
                         <div class="col-4 icon-block icon-top">
@@ -243,14 +248,14 @@
                             </div>
                             <div class="icon-block-description">
                                 <h4>Elektroterapie</h4>
-                                <div style="display: flex; justify-content: center; min-height: 52px">
-                                    <p style="margin: 0">1 000 Kč</p>
+                                <div class="pricing-list">
+                                    <p>1 000 Kč</p>
                                 </div>
-                                <a href="#contact" class="button">OBJEDNAT</a>
+                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Elektroterapie">OBJEDNAT</a>
                             </div>
                         </div>
                     </div>
-                    <div style="display: flex; justify-content: space-evenly">
+                    <div class="flex" style="justify-content: space-evenly">
                         <div class="col-4 icon-block icon-top">
                             <div class="icon">
                                 <i class="fa-solid fa-tape fa-2xl"></i>
@@ -258,17 +263,17 @@
                             <div class="icon-block-description">
                                 <h4>Tejpování</h4>
                                 <div style="min-height: 52px">
-                                    <div style="display: flex; justify-content: space-between">
-                                        <p style="margin: 0">Nalepení</p>
-                                        <p style="margin: 0">100 Kč</p>
+                                    <div class="flex space-between">
+                                        <p>Nalepení</p>
+                                        <p>100 Kč</p>
                                     </div>
-                                    <hr style="color: white; height: 1px; margin: 0">
-                                    <div style="display: flex; justify-content: space-between">
-                                        <p style="margin: 0">Použitý materiál à 1cm</p>
-                                        <p style="margin: 0">1,50 Kč</p>
+                                    <hr>
+                                    <div class="flex space-between">
+                                        <p>Použitý materiál à 1cm</p>
+                                        <p>1,50 Kč</p>
                                     </div>
                                 </div>
-                                <a href="#contact" class="button">OBJEDNAT</a>
+                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Tejpování">OBJEDNAT</a>
                             </div>
                         </div>
                         <div class="col-4 icon-block icon-top">
@@ -278,9 +283,9 @@
                             <div class="icon-block-description">
                                 <h4>Potvrzení pro pojišťovnu</h4>
                                 <div style="display: flex; justify-content: center; min-height: 52px">
-                                    <p style="margin: 0">100 Kč</p>
+                                    <p>100 Kč</p>
                                 </div>
-                                <a href="#contact" class="button">OBJEDNAT</a>
+                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Potvrzení pro pojišťovnu">OBJEDNAT</a>
                             </div>
                         </div>
                         <div class="col-4 icon-block icon-top">
@@ -290,9 +295,9 @@
                             <div class="icon-block-description">
                                 <h4>Dárkové poukazy</h4>
                                 <div style="display: flex; justify-content: center; min-height: 52px">
-                                    <p style="margin: 0">od 500 Kč</p>
+                                    <p>od 500 Kč</p>
                                 </div>
-                                <a href="#contact" class="button">OBJEDNAT</a>
+                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Dárkové poukazy">OBJEDNAT</a>
                             </div>
                         </div>
                     </div>
@@ -302,7 +307,7 @@
 
         <section id="contact" class="scrollto clearfix">
             <div class="row clearfix">
-                <div class="col-3">
+                <div class="col-2-3">
                     <div class="section-heading">
                         <h3>KONTAKT</h3>
                         <h2 class="section-title">Kontaktujte nás</h2>
@@ -315,16 +320,115 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-2-3" style="padding-left: 300px">
-                    <div style="border: 1px solid black; min-height: 60vh"></div>
+                <div class="col-3">
+                    <div style="box-shadow: 0 4px 28px rgba(0, 0, 0, 0.05); border-radius: 8px;background-color: white; padding: 40px 60px">
+                        <h3 class="section-title">Napište nám!</h3>
+                        <form id="demandForm" method="post" action="{route('sendMail')}">
+                            {csrf_field()|noescape}
+                            <div style="margin-bottom: 25px">
+                                <label for="name" style="display: block">Jméno <i class="fa-solid fa-star-of-life fa-2xs text-primary"></i></label>
+                                <input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        placeholder="Jan Novák"
+                                        class="contact-input"
+                                        required
+                                />
+                            </div>
+                            <div style="margin-bottom: 25px">
+                                <label for="email" style="display: block">E-mail <i class="fa-solid fa-star-of-life fa-2xs text-primary"></i></label>
+                                <input
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        placeholder="jan@novak.cz"
+                                        class="contact-input"
+                                        required
+                                />
+                            </div>
+                            <div style="margin-bottom: 25px">
+                                <label for="phone" style="display: block">Telefon <i class="fa-solid fa-star-of-life fa-2xs text-primary"></i></label>
+                                <input
+                                        type="text"
+                                        name="phone"
+                                        id="phone"
+                                        placeholder="+420 123 456 789"
+                                        class="contact-input"
+                                        required
+                                />
+                            </div>
+                            <div style="margin-bottom: 25px" v-if="variant !== null">
+                                <label for="variant" style="display: block">Mám zájem o</i></label>
+                                <input
+                                        type="text"
+                                        name="variant"
+                                        id="variant"
+                                        class="contact-input text-primary"
+                                        :value="variant"
+                                        style="font-weight: bold;"
+                                />
+                            </div>
+                            <div style="margin-bottom: 25px">
+                                <label for="message" style="display: block">Text zprávy</label>
+                                <textarea
+                                        name="message"
+                                        id="message"
+                                        class="contact-input"
+                                        rows="1"
+                                        placeholder="Dobrý den..."
+                                ></textarea>
+                            </div>
+                            <input
+                                    n:syntax="off"
+                                    type="hidden"
+                                    name="variant"
+                                    :value="variant"
+                                    placeholder=""
+                            />
+                            <div style="display: flex; flex-direction: column; justify-content: center">
+                                <button type="submit" class="button" id="sendDemandButton" style="background-color: white">
+                                    Odeslat poptávku
+                                </button>
+                                <p style="color: white; background-color: #3F994F; width: 100%; text-align: center" id="mailSuccess"></p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
 
         <footer id="landing-footer" class="clearfix">
             <div class="row clearfix" style="margin-bottom: 20px">
-                <p id="copyright" class="text-center">&copy;{date('Y')} | Made with <i class="fa-regular fa-heart fa-lg" style="color: #3F994F"></i> by Martin Dub</p>
+                <p id="copyright" class="text-center">&copy;{date('Y')} | Made with <i class="fa-regular fa-heart fa-lg text-primary"></i> by Martin Dub</p>
             </div>
         </footer>
     </div>
+{/block}
+
+{block bottomscripts}
+    <script type="text/javascript">
+        document.getElementById("demandForm").addEventListener("submit", function() {
+            document.getElementById("sendDemandButton").setAttribute("disabled", "disabled");
+            setTimeout(function() {
+                document.getElementById("sendDemandButton").removeAttribute("disabled");
+            }, 2000);
+        });
+    </script>
+    <script>
+        (function(){
+            let vue = new Vue({
+                el: '#wrapper',
+                data: {
+                    variant: null,
+                },
+                methods: {
+                    setVariant: function (e) {
+                        this.variant = e.target.dataset.variant;
+                        console.log(this.variant)
+                    }
+                }
+            });
+        })();
+    </script>
 {/block}

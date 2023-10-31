@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
-})->name('homepage');
+Route::get('/', [Controllers\HomepageController::class, 'index'])->name('homepage');
 
-Route::any('/admin', [\App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('auth');
+Route::post('/sendMail', [Controllers\EmailsController::class, 'sendMail'])->name('sendMail');
+
+Route::any('/admin', [Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('auth');
