@@ -4,6 +4,7 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 {/block}
 {block content}
     <div id="wrapper">
@@ -22,15 +23,16 @@
                                         id="name"
                                         class="contact-input"
                                         placeholder="Zpráva"
+                                        v-model="preview"
                                         aria-label
-                                >{config('fyzio.announcement')|noescape}</textarea>
-
-                                <ul class="grid grid-cols-3 mt-4">
+                                ></textarea>
+                                <h4 class="mt-4">Pozadí</h4>
+                                <ul class="grid grid-rows-3 gap-4">
                                     <li>
                                         <input type="radio" id="hosting-small" name="background" value="#f5b648" class="hidden peer">
                                         <label for="hosting-small" class="inline-flex p-2 px-5 bg-[#f5b648] border rounded-lg cursor-pointer peer-checked:border-2 peer-checked:border-blue-600">
                                             <div class="block">
-                                                <div class="w-full text-lg font-semibold text-white">Pozadí</div>
+                                                <div class="w-full text-lg font-semibold text-white">{{ preview }}</div>
                                             </div>
                                         </label>
                                     </li>
@@ -38,7 +40,7 @@
                                         <input type="radio" id="hosting-medium" name="background" value="#3f994f" class="hidden peer">
                                         <label for="hosting-medium" class="inline-flex p-2 px-5 bg-[#3f994f] border rounded-lg cursor-pointer peer-checked:border-2 peer-checked:border-blue-600">
                                             <div class="block">
-                                                <div class="w-full text-lg font-semibold text-white">Pozadí</div>
+                                                <div class="w-full text-lg font-semibold text-white">{{ preview }}</div>
                                             </div>
                                         </label>
                                     </li>
@@ -46,13 +48,14 @@
                                         <input type="radio" id="hosting-large" name="background" value="#212121" class="hidden peer">
                                         <label for="hosting-large" class="inline-flex p-2 px-5 bg-[#212121] border rounded-lg cursor-pointer peer-checked:border-2 peer-checked:border-blue-600">
                                             <div class="block">
-                                                <div class="w-full text-lg font-semibold text-white">Pozadí</div>
+                                                <div class="w-full text-lg font-semibold text-white">{{ preview }}</div>
                                             </div>
                                         </label>
                                     </li>
                                 </ul>
 
-                                <button type="submit" class="button" style="background-color: transparent">PROPSAT</button>
+                                <button type="submit" class="button me-4" style="background-color: transparent">PROPSAT</button>
+                                <a href="{route('set-announcement')}"><button type="button" class="button hover:border-red-600 hover:text-red-600" style="background-color: transparent">SMAZAT</button></a>
                             </form>
                         </div>
                     </div>
@@ -61,4 +64,13 @@
             </section>
         </main>
     </div>
+
+    <script>
+        new Vue({
+            el: '#wrapper',
+            data: {
+                preview: ""
+            }
+        })
+    </script>
 {/block}

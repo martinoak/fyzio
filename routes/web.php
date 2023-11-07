@@ -22,4 +22,4 @@ Route::get('/login', [Controllers\AuthController::class, 'login'])->name('login'
 Route::post('/authenticate', [Controllers\AuthController::class, 'authenticate'])->name('authenticate');
 
 Route::any('/admin', [Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::post('/update-announcement', [Controllers\AdminController::class, 'announcement'])->name('set-announcement');
+Route::match(['get', 'post'], '/update-announcement', [Controllers\AdminController::class, 'announcement'])->name('set-announcement');
