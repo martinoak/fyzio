@@ -9,38 +9,30 @@
     </button>
 </h3>
 <div id="a-collapse-body-{$customer->id}" class="hidden" aria-labelledby="a-collapse-heading-{$customer->id}">
-    <div class="p-2 border border-gray-200">
+    <div class="border border-gray-200">
         <ol class="divide-y divide-gray-200">
             <li class="p-3 sm:flex">
                 <a href="tel:{$customer->phone}" class="flex items-center">
                     <i class="fa-solid fa-phone fa-lg p-2 me-2"></i>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        {$customer->phone}
-                    </p>
+                    {$customer->phone}
                 </a>
             </li>
             <li class="p-3 sm:flex">
                 <a href="tel:{$customer->email|noescape}" class="flex items-center">
                     <i class="fa-solid fa-at fa-lg p-2 me-2"></i>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        {$customer->email|noescape}
-                    </p>
+                    {$customer->email|noescape}
                 </a>
             </li>
             {if $customer->variant !== null}
                 <li class="p-3 sm:flex items-center">
                     <i class="fa-solid fa-spa fa-lg p-2 me-2"></i>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        {$customer->variant}
-                    </p>
+                    {$customer->variant}
                 </li>
             {/if}
             {if $customer->message !== null}
                 <li class="p-3 sm:flex items-center">
                     <i class="fa-solid fa-envelope fa-lg p-2 me-2"></i>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        {$customer->message}
-                    </p>
+                    {$customer->message}
                 </li>
             {/if}
         </ol>
