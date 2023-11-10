@@ -2,7 +2,7 @@
 
 {block head}
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{asset('css/tailwind.css')}?m={filemtime(public_path('css/tailwind.css'))}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 {/block}
@@ -32,7 +32,7 @@
                                         <input type="radio" id="hosting-small" name="background" value="#f5b648" class="hidden peer">
                                         <label for="hosting-small" class="inline-flex p-2 px-5 bg-[#f5b648] border rounded-lg cursor-pointer peer-checked:border-2 peer-checked:border-blue-600">
                                             <div class="block">
-                                                <div class="w-full text-lg font-semibold text-white">{{ preview }}</div>
+                                                <div class="w-full text-lg font-semibold text-white">{{ preview | truncate(36, '...') }}</div>
                                             </div>
                                         </label>
                                     </li>
@@ -40,7 +40,7 @@
                                         <input type="radio" id="hosting-medium" name="background" value="#3f994f" class="hidden peer">
                                         <label for="hosting-medium" class="inline-flex p-2 px-5 bg-[#3f994f] border rounded-lg cursor-pointer peer-checked:border-2 peer-checked:border-blue-600">
                                             <div class="block">
-                                                <div class="w-full text-lg font-semibold text-white">{{ preview }}</div>
+                                                <div class="w-full text-lg font-semibold text-white">{{ preview | truncate(36, '...') }}</div>
                                             </div>
                                         </label>
                                     </li>
@@ -48,15 +48,39 @@
                                         <input type="radio" id="hosting-large" name="background" value="#212121" class="hidden peer">
                                         <label for="hosting-large" class="inline-flex p-2 px-5 bg-[#212121] border rounded-lg cursor-pointer peer-checked:border-2 peer-checked:border-blue-600">
                                             <div class="block">
-                                                <div class="w-full text-lg font-semibold text-white">{{ preview }}</div>
+                                                <div class="w-full text-lg font-semibold text-white">{{ preview | truncate(36, '...') }}</div>
                                             </div>
                                         </label>
                                     </li>
                                 </ul>
 
-                                <button type="submit" class="button me-4" style="background-color: transparent">PROPSAT</button>
-                                <a href="{route('set-announcement')}"><button type="button" class="button hover:border-red-600 hover:text-red-600" style="background-color: transparent">SMAZAT</button></a>
+                                <button type="submit" class="button me-4 bg-white">PROPSAT</button>
+                                {if !empty(config('fyzio.announcement'))}
+                                    <a href="{route('set-announcement')}">
+                                        <button class="button border-red-600 text-red-600 hover:border-red-600 hover:text-red-600 bg-white">
+                                            SMAZAT
+                                        </button>
+                                    </a>
+                                {/if}
                             </form>
+                        </div>
+                    </div>
+                    <div class="col-2-3">
+                        <div class="section-heading">
+                            <h2 class="section-title">ZÁKAZNÍCI</h2>
+                        </div>
+                        <div id="accordion-collapse" data-accordion="collapse" class="mb-32">
+                            {foreach $customers as $customer}
+                                {include '../partials/customer.latte', customer => $customer}
+                            {/foreach}
+                        </div>
+                        <div class="section-heading">
+                            <h2 class="section-title">ARCHIV</h2>
+                        </div>
+                        <div id="accordion-collapse" data-accordion="collapse">
+                            {foreach $archivedCustomers as $customer}
+                                {include '../partials/customer.latte', customer => $customer}
+                            {/foreach}
                         </div>
                     </div>
                 </div>
@@ -71,6 +95,17 @@
             data: {
                 preview: ""
             }
-        })
+        });
+
+        const filter = function (text, length, clamp) {
+            clamp = clamp || '...';
+            const node = document.createElement('div');
+            node.innerHTML = text;
+            const content = node.textContent;
+            return content.length > length ? content.slice(0, length) + clamp : content;
+        };
+
+        Vue.filter('truncate', filter);
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
 {/block}
