@@ -1732,7 +1732,8 @@ blockquote {
 .insurance {
     filter: grayscale(100%);
     transition: all 0.3s ease-out 0s;
-    object-fit: cover;
+    object-fit: contain;
+    max-height: 85px;
 }
 
 .insurance:hover {
