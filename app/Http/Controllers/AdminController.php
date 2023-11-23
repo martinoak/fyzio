@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class AdminController extends Controller
 {
     public function dashboard(): View
     {
-        return view('admin.dashboard');
+        $all = DB::table('customers')->get()->toArray();
+        $customers = array_filter($all, fn($customer) => !$customer->is_archived);
+        $archivedCustomers = array_filter($all, fn($customer) => $customer->is_archived);
+
+        return view('admin.dashboard', compact(['customers', 'archivedCustomers']));
     }
 
     public function announcement(Request $request): RedirectResponse
