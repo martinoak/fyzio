@@ -24,4 +24,6 @@ Route::post('/authenticate', [Controllers\AuthController::class, 'authenticate']
 Route::group(['middleware' => 'auth'], function () {
     Route::any('/admin', [Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::match(['get', 'post'], '/update-announcement', [Controllers\AdminController::class, 'announcement'])->name('set-announcement');
+
+    Route::any('/admin/customer/{action}/{id}', [Controllers\AdminController::class, 'customer'])->name('admin.customer');
 });
