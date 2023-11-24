@@ -1,23 +1,21 @@
 {layout '../_layout.latte'}
 
-{block head}
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
-{/block}
-
 {block content}
     <div>
         <section id="contact" class="scrollto clearfix">
             <div class="row clearfix" style="display: flex; justify-content: center; align-items: center; height: 100vh">
                 <div class="col-2">
                     <div style="box-shadow: 0 4px 28px rgba(0, 0, 0, 0.5); border-radius: 8px;background-color: white; padding: 40px 60px">
+                        <span>Text</span>
                         <form method="post" action="{route('authenticate')}">
                             {csrf_field()|noescape}
                             <div style="margin-bottom: 25px">
                                 <label for="name" style="display: block">Jméno</label>
                                 <input
                                         type="text"
-                                        name="username"
+                                        name="name"
                                         class="contact-input"
+                                        value="{old('name')}"
                                         required
                                 />
                             </div>
@@ -27,11 +25,12 @@
                                         type="password"
                                         name="password"
                                         class="contact-input"
+                                        value="{old('password')}"
                                         required
                                 />
                             </div>
                             <div style="display: flex; justify-content: center">
-                                <button type="submit" class="button" id="sendDemandButton" style="background-color: white; margin-bottom: unset">
+                                <button type="submit" class="button" style="background-color: transparent; margin-bottom: unset">
                                     PŘIHLÁSIT SE
                                 </button>
                             </div>

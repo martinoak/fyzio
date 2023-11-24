@@ -21,5 +21,7 @@ Route::post('/sendMail', [Controllers\EmailsController::class, 'sendMail'])->nam
 Route::get('/login', [Controllers\AuthController::class, 'login'])->name('login');
 Route::post('/authenticate', [Controllers\AuthController::class, 'authenticate'])->name('authenticate');
 
-Route::any('/admin', [Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::match(['get', 'post'], '/update-announcement', [Controllers\AdminController::class, 'announcement'])->name('set-announcement');
+Route::group(['middleware' => 'auth'], function () {
+    Route::any('/admin', [Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::match(['get', 'post'], '/update-announcement', [Controllers\AdminController::class, 'announcement'])->name('set-announcement');
+});

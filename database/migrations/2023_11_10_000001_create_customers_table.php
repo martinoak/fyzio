@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('variant')->nullable();
             $table->string('message')->nullable();
             $table->boolean('is_archived')->default(false);
+            $table->dateTime('term')->nullable();
             $table->timestamps();
         });
     }
