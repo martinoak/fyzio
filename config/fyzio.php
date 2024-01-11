@@ -1,5 +1,5 @@
 <?php return array (
-  'announcement' => NULL,
+  'announcement' => 'Web je před spuštením',
   'icon' => 'Ikona',
   'color' => 'black',
   'background' => '#f5b648',

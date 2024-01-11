@@ -138,37 +138,31 @@
                     <h2 class="section-title">Nakoukněte do naší ordinace</h2>
                 </div>
                 {for $i = 1; $i <= 6; $i++}
-                    <a href="images/equipment-images/mockup-{$i}.jpg" data-featherlight="image" class="col-3">
-                        <img src="{asset('images/equipment-images/mockup-'.$i.'.jpg')}?m={filemtime(public_path('images/equipment-images/mockup-'.$i.'.jpg'))}" alt=""/>
+                    <a href="images/equipment-images/{$i}.jpg" data-featherlight="image" class="col-3">
+                        <img src="{asset('images/equipment-images/'.$i.'.jpg')}?m={filemtime(public_path('images/equipment-images/'.$i.'.jpg'))}" style="width: fit-content" alt=""/>
                     </a>
                 {/for}
             </aside>
 
-            <div id="therapists" class="scrollto clearfix">
-                <div class="row no-padding-bottom clearfix">
-                    <div class="col-3">
-                        <div class="section-heading">
-                            <h3>TERAPEUTI</h3>
-                            <h2 class="section-title">Focusing On What Matters Most</h2>
-                            <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam!</p>
-                        </div>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                            dicta sunt explicabo.
-                        </p>
-                        <p>
-                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                            consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-                            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet!
-                        </p>
-                        <a href="#contact" class="button">TLAČÍTKO</a>
-                    </div>
-                    <div class="col-3">
-                        <img src="images/dancer.jpg" alt="Dancer"/>
-                    </div>
+            <div id="therapists" class="scrollto clearfix" style="position: relative;">
+              <div style="position: absolute;width: 100%;height: 100%;background-color: #3F994F;clip-path: polygon(0 100%, 100% 70%, 100% 0, 0 0%);z-index: -1;"></div>
+              <div class="row no-padding-bottom clearfix">
+                <div class="col-2">
+                  <div class="section-heading">
+                    <h3>TERAPEUTI</h3>
+                    <h2 class="section-title" style="color: white">Zákazník je naše nejvyšší priorita</h2>
+                    <p class="section-subtitle" style="color: white; margin-bottom: 20px">Děláme vše proto, aby se Vám u nás líbilo. Vaším strastem se naplno věnujeme a snažíme se,
+                    abyste odcházeli od nás spokojení.</p>
+                    <p class="section-subtitle" style="color: white">Máte nějaké potíže? Neváhejte nám napsat přes kontaktní formulář níže nebo nám rovnou zavolejte!</p>
+                  </div>
+                  <a href="#contact" class="button-inverse">TLAČÍTKO</a>
                 </div>
+                <div class="col-2">
+                  <img src="images/heroes-nobg.png" alt="Dancer"/>
+                </div>
+              </div>
             </div>
+
             <section id="policy" class="scrollto clearfix">
                 <div class="row text-center">
                     <div class="col-1">
@@ -187,7 +181,7 @@
                     </div>
                 </div>
             </section>
-            <section id="pricing" class="scrollto clearfix">
+            <section id="pricing" class="scrollto clearfix" style="background-color: rgba(0,0,0,.05)">
                 <aside class="row text-center scrollto clearfix">
                     <div class="section-heading">
                         <h3>CENÍK</h3>
@@ -396,7 +390,7 @@
             </div>
         </section>
 
-        <footer id="landing-footer" class="clearfix">
+        <footer id="landing-footer" class="clearfix" style="padding-top: 20px; box-shadow: 0 4px 28px rgba(0, 0, 0, 0.1); border-radius: 8px;">
             <div class="row clearfix" style="margin-bottom: 20px">
                 <p id="copyright" class="text-center">&copy;{date('Y')} | Made with <i class="fa-regular fa-heart fa-lg text-primary"></i> by Martin Dub</p>
             </div>
