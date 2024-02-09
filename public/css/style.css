@@ -571,6 +571,16 @@ nav#nav-mobile a:hover {
     opacity: 1;
 }
 
+ul.list > li {
+    border-bottom: 1px solid #ccc;
+    list-style-type: none;
+    line-height: 25px;
+}
+
+ul.list > li:last-child {
+    border-bottom: none;
+}
+
 /* --------- 2.5 Social Elements ---------- */
 
 #header .col-4 {
