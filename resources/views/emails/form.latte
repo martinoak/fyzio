@@ -123,15 +123,15 @@
                                             </tr>
                                             <tr>
                                                 <td style="font-family:'Poppins', sans-serif;color:black;font-size:14px;line-height:24px;font-weight:400;letter-spacing:0;padding: 0 0 30px;">
-                                                    <strong style="color: #3F994F">Jméno: </strong>{$data['name']}<br>
-                                                    <strong style="color: #3F994F">Email: </strong>{$data['email']}<br>
-                                                    <strong style="color: #3F994F">Telefon: </strong>{$data['phone']}<br>
+                                                    <strong class="text-primary">Jméno: </strong>{$data['name']}<br>
+                                                    <strong class="text-primary">Email: </strong>{$data['email']}<br>
+                                                    <strong class="text-primary">Telefon: </strong>{$data['phone']}<br>
                                                     {ifset $data['variant']}
-                                                        <strong style="color: #3F994F">Varianta: </strong>{$data['variant']}<br>
+                                                        <strong class="text-primary">Varianta: </strong>{$data['variant']}<br>
                                                     {/ifset}
                                                     {ifset $data['message']}
                                                         <p style="max-width: 50%;margin: 0; padding: 0">
-                                                            <strong style="color: #3F994F">Text zprávy: </strong>{$data['message']}
+                                                            <strong class="text-primary">Text zprávy: </strong>{$data['message']}
                                                         </p>
                                                     {/ifset}
                                                 </td>
