@@ -33,10 +33,10 @@ $(document).ready(function () {
 
 	$('#content').waypoint(function (direction) {
 		if (direction === 'down') {
-			$('#header').addClass('nav-solid fadeInDown');
+			$('#header').addClass('nav-solid');
 		}
 		else {
-			$('#header').removeClass('nav-solid fadeInDown');
+			$('#header').removeClass('nav-solid');
 		}
 	});
 
