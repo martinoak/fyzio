@@ -167,7 +167,7 @@
                             <p class="section-subtitle">Záleží nám na Vaší péči, a proto máme uzavřené kontrakty s těmito pojišťovnami:</p>
                         </div>
                     </div>
-                    <div class="col-1 flex" style="align-items: center">
+                    <div class="col-1 flex sm-flex-col" style="align-items: center">
                         <img class="col-3 insurance" src="{asset('images/company-images/ozp.png')}" alt="Company"/>
                         <img class="col-3 insurance" src="{asset('images/company-images/vzp.png')}" alt="Company"/>
                         <img class="col-3 insurance" src="{asset('images/company-images/vozp.png')}" alt="Company"/>
@@ -182,7 +182,7 @@
                         <h3>CENÍK</h3>
                         <h2 class="section-title">Co nabízíme?</h2>
                     </div>
-                    <div class="flex space-between">
+                    <div class="flex space-between sm-flex-col sm-padding">
                         <div class="col-4 icon-block icon-top">
                             <div class="icon">
                                 <i class="fa-solid fa-person-walking fa-2xl"></i>
@@ -250,7 +250,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex" style="justify-content: space-evenly">
+                    <div class="flex space-between sm-flex-col sm-padding">
                         <div class="col-4 icon-block icon-top">
                             <div class="icon">
                                 <i class="fa-solid fa-bolt fa-2xl"></i>
@@ -327,7 +327,7 @@
                 </div>
                 <div class="col-3">
                     <div style="box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); border-radius: 8px;background-color: white; padding: 40px 60px">
-                        <h3 class="section-title">Napište nám!</h3>
+                        <h3 class="section-title form-heading">Napište nám!</h3>
                         <form id="demandForm" method="post" action="{route('sendMail')}">
                             {csrf_field()|noescape}
                             <div style="margin-bottom: 25px">

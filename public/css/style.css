@@ -768,6 +768,10 @@ h6 {
 /* Landscape mobile & down
 ===============================*/
 @media (max-width: 480px) {
+    .form-heading {
+        font-size: 30px !important;
+    }
+
     #banner {
         background: unset !important;
     }
@@ -792,6 +796,15 @@ h6 {
     .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col-2-3, .col-3-4, .col-9-10, .col-61, .col-38 {
         padding-right: 0;
         padding-left: 0;
+    }
+
+    .sm-flex-col {
+        display: flex;
+        flex-direction: column !important;
+    }
+
+    .sm-padding {
+        padding: 0 20px;
     }
 
     /*-----------------Header Elements-----------------*/
