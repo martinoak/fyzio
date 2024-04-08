@@ -1,9 +1,5 @@
 {layout '_layout.latte'}
 
-{block head}
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16"></script>
-{/block}
-
 {block content}
     <div id="wrapper">
         {include 'partials/announcement.latte'}
@@ -388,13 +384,11 @@
                                         placeholder="Dobrý den..."
                                 ></textarea>
                             </div>
-                            <input
-                                    n:syntax="off"
-                                    type="hidden"
-                                    name="variant"
-                                    :value="variant"
-                                    placeholder=""
-                            />
+                            <input type="hidden"
+                                   name="variant"
+                                   v-model="variant"
+                                   placeholder=""
+                            >
                             <div style="display: flex; flex-direction: column; justify-content: center">
                                 <button type="submit" class="button" id="sendDemandButton" style="background-color: white">
                                     ODESLAT POPTÁVKU
