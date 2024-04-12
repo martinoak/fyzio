@@ -217,13 +217,9 @@ section {
 }
 
 #logo img {
-    max-height: 30px;
+    max-height: 50px;
     vertical-align: middle;
     margin-right: 15px;
-}
-
-#navigation-logo {
-    display: none;
 }
 
 /* --------- 2.3 Buttons ---------- */
