@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('variant')->nullable();
+            $table->string('name', 200);
+            $table->string('email', 200);
+            $table->string('phone', 200);
+            $table->string('variant', 200)->nullable();
             $table->text('message')->nullable();
             $table->dateTime('term')->nullable();
             $table->timestamps();

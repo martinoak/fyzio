@@ -1,9 +1,8 @@
 {layout '../_layout.latte'}
 
 {block head}
-
     <link rel="stylesheet" href="{asset('css/tailwind.css')}?m={filemtime(public_path('css/tailwind.css'))}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 {/block}
 
 {block content}
@@ -32,7 +31,7 @@
                                         <input type="radio" id="hosting-small" name="background" value="#f5b648" class="hidden peer">
                                         <label for="hosting-small" class="inline-flex p-2 px-5 bg-[#f5b648] border rounded-lg cursor-pointer peer-checked:border-2 peer-checked:border-blue-600">
                                             <div class="block">
-                                                <div class="w-full text-lg font-semibold text-white">{{ preview | truncate(36, '...') }}</div>
+                                                <div class="w-full text-lg font-semibold text-white">{{ preview | truncate(25, '...') }}</div>
                                             </div>
                                         </label>
                                     </li>
@@ -40,7 +39,7 @@
                                         <input type="radio" id="hosting-medium" name="background" value="#3f994f" class="hidden peer">
                                         <label for="hosting-medium" class="inline-flex p-2 px-5 bg-[#3f994f] border rounded-lg cursor-pointer peer-checked:border-2 peer-checked:border-blue-600">
                                             <div class="block">
-                                                <div class="w-full text-lg font-semibold text-white">{{ preview | truncate(36, '...') }}</div>
+                                                <div class="w-full text-lg font-semibold text-white">{{ preview | truncate(25, '...') }}</div>
                                             </div>
                                         </label>
                                     </li>
@@ -48,7 +47,7 @@
                                         <input type="radio" id="hosting-large" name="background" value="#212121" class="hidden peer">
                                         <label for="hosting-large" class="inline-flex p-2 px-5 bg-[#212121] border rounded-lg cursor-pointer peer-checked:border-2 peer-checked:border-blue-600">
                                             <div class="block">
-                                                <div class="w-full text-lg font-semibold text-white">{{ preview | truncate(36, '...') }}</div>
+                                                <div class="w-full text-lg font-semibold text-white">{{ preview | truncate(25, '...') }}</div>
                                             </div>
                                         </label>
                                     </li>
@@ -72,7 +71,7 @@
                         <div id="accordion-collapse" data-accordion="collapse" class="mb-32">
                             {foreach $customers as $customer}
                                 <h3 class="p-0" id="a-collapse-heading-{$customer->id}">
-                                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium border-b bg-white dark:bg-white" data-accordion-target="#a-collapse-body-{$customer->id}" aria-controls="a-collapse-body-{$customer->id}">
+                                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium border-b bg-white" data-accordion-target="#a-collapse-body-{$customer->id}" aria-controls="a-collapse-body-{$customer->id}">
                                         <div class="flex items-center">
                                             <i class="fa-solid fa-user text-white bg-[#3f994f] p-2 me-2 rounded-md"></i> <span>{$customer->name}</span>
                                         </div>
@@ -124,7 +123,7 @@
                         <div id="accordion-collapse" data-accordion="collapse">
                             {foreach $archivedCustomers as $customer}
                                 <h3 class="p-0">
-                                    <div class="flex items-center justify-between w-full p-5 font-medium border-b bg-white dark:bg-white">
+                                    <div class="flex items-center justify-between w-full p-5 font-medium border-b bg-white">
                                         <div class="flex items-center">
                                             <i class="fa-solid fa-check text-white bg-[#3f994f] p-2 me-2 rounded-md"></i> <span>{$customer->name}</span>
                                         </div>
@@ -139,6 +138,30 @@
                             {/foreach}
                         </div>
                     </div>
+                    <div class="col-1">
+                        <div class="section-heading">
+                            <h2 class="section-title">ÚPRAVA WEBU</h2>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-1/2">
+                                <div class="section-heading">
+                                    <h3 class="section-title">Terapeutické metody</h3>
+                                </div>
+                                <div class="w-3/4 my-2" v-for="(method, index) in methods" :key="index">
+                                    <div class="flex items-center">
+                                        <input type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg w-full block p-2.5" v-model="methods[index]" aria-label="" />
+                                        <button class="button m-0 ms-2 p-0 px-4 w-24 h-8 text-center" @click="removeMethod(index)">Smazat</button>
+                                    </div>
+                                </div>
+                                <button @click="pushMethods()" class="button me-4 bg-white">ULOŽIT</button>
+                            </div>
+                            <div class="w-1/2">
+                                <div class="section-heading">
+                                    <h3 class="section-title">Fyzikální terapie</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </section>
@@ -149,9 +172,41 @@
         new Vue({
             el: '#wrapper',
             data: {
-                preview: ""
+                preview: "",
+                methods: ['']
+            },
+            methods: {
+                addMethod: function() {
+                    this.methods.push('');
+                },
+                removeMethod: function(index) {
+                    this.methods.splice(index, 1);
+                },
+                pushMethods: function() {
+                    fetch('/api/save-methods', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify({ methods: this.methods })
+                    })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                }
+            },
+            watch: {
+                methods: function(newMethods) {
+                    if (newMethods[newMethods.length - 1] !== '') {
+                        this.addMethod();
+                    }
+                }
             }
         });
+
 
         const filter = function (text, length, clamp) {
             clamp = clamp || '...';
@@ -163,5 +218,5 @@
 
         Vue.filter('truncate', filter);
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 {/block}

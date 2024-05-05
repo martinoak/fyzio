@@ -337,7 +337,6 @@ section {
 #nav-trigger {
     display: none;
     text-align: right;
-    margin-top: 21px;
 }
 
 #nav-trigger span {
@@ -755,10 +754,6 @@ h6 {
     nav#nav-mobile li {
         display: block;
     }
-
-    #header aside {
-        display: none;
-    }
 }
 
 /* Landscape mobile & down
@@ -813,7 +808,7 @@ h6 {
     }
 
     #header.nav-solid [class*="col-"] {
-        padding: 0;
+        padding: 0 20px;
     }
 
     /*Logo*/
@@ -865,7 +860,7 @@ h6 {
 
 /* Mobile to Tablet Portrait
 ===============================*/
-@media (min-width: 480px) and (max-width: 767px) {
+@media (min-width: 240px) and (max-width: 767px) {
 
     #wrapper {
         margin:0;

@@ -1,6 +1,6 @@
 <?php return array (
-  'announcement' => 'Web je před spuštením',
+  'announcement' => 'Text',
   'icon' => 'Ikona',
   'color' => 'black',
-  'background' => '#f5b648',
+  'background' => '#3f994f',
 );
