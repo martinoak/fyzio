@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Method extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['type', 'value'];
+
+    protected $table = 'services';
+
+    public $timestamps = false;
 }

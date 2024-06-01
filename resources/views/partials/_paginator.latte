@@ -1,0 +1,63 @@
+{if $paginable->lastPage() > 1}
+    <ul class="pagination">
+        <li n:if="$paginable->currentPage() > 1">
+            <a href="?page={$paginable->currentPage()-1}"
+               class="chevron rounded-s-lg"
+            >
+                <i class="fa-solid fa-chevron-left"></i>
+            </a>
+        </li>
+        <li n:else>
+            <a class="chevron-disabled rounded-s-lg">
+                <i class="fa-solid fa-chevron-left"></i>
+            </a>
+        </li>
+        {for $i = 1; $i <= $paginable->lastPage(); $i++}
+            {if $i > $paginable->currentPage() - 3 && $i < $paginable->currentPage() + 3}
+                <li>
+                    <a href="?page={$i}"
+                       class="pag-item {if $i == $paginable->currentPage()}pag-active{else}bg-white{/if}"
+                    >
+                        {$i}
+                    </a>
+                </li>
+            {elseif $i == $paginable->currentPage() - 3}
+                <li class="pag-item {if $i == $paginable->currentPage()}pag-active{else}bg-white{/if}">
+                    <i class="fa-solid fa-ellipsis-h"></i>
+                </li>
+            {elseif $i == $paginable->currentPage() + 3}
+                <li class="pag-item {if $i == $paginable->currentPage()}pag-active{else}bg-white{/if}">
+                    <i class="fa-solid fa-ellipsis-h"></i>
+                </li>
+            {elseif $i == 1}
+                <li>
+                    <a href="?page={$i}"
+                       class="pag-item {if $i == $paginable->currentPage()}pag-active{else}bg-white{/if}"
+                    >
+                        {$i}
+                    </a>
+                </li>
+            {elseif $i == $paginable->lastPage()}
+                <li>
+                    <a href="?page={$i}"
+                       class="pag-item {if $i == $paginable->currentPage()}pag-active{else}bg-white{/if}"
+                    >
+                        {$i}
+                    </a>
+                </li>
+            {/if}
+        {/for}
+        <li n:if="$paginable->currentPage() < $paginable->lastPage()">
+            <a href="?page={$paginable->currentPage()+1}"
+               class="chevron rounded-e-lg"
+            >
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+        </li>
+        <li n:else>
+            <a class="chevron-disabled rounded-e-lg">
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+        </li>
+    </ul>
+{/if}

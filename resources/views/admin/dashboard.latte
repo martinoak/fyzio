@@ -2,7 +2,6 @@
 
 {block head}
     <link rel="stylesheet" href="{asset('css/tailwind.css')}?m={filemtime(public_path('css/tailwind.css'))}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 {/block}
 
 {block content}
@@ -56,7 +55,7 @@
                                 <button type="submit" class="button me-4 bg-white">PROPSAT</button>
                                 {if !empty(config('fyzio.announcement'))}
                                     <a href="{route('set-announcement')}">
-                                        <button class="button border-red-600 text-red-600 hover:border-red-600 hover:text-red-600 bg-white">
+                                        <button class="button button-red">
                                             SMAZAT
                                         </button>
                                     </a>
@@ -68,25 +67,22 @@
                         <div class="section-heading">
                             <h2 class="section-title">ZÁKAZNÍCI</h2>
                         </div>
-                        <div id="accordion-flush" data-accordion="collapse" data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
+                        <div id="accordion-flush" data-accordion="collapse" data-active-classes="bg-white text-gray-900" data-inactive-classes="text-gray-500">
                             {foreach $customers as $c}
-                                <h2 class="p-0" id="{$c->id}-heading">
-                                    <button type="button" class="flex items-center justify-between w-full py-5 font-medium border-b gap-3" data-accordion-target="#acc-{$c->id}-body" aria-expanded="false" aria-controls="acc-{$c->id}-body">
+                                <div class="p-0" id="{$c->id}-heading">
+                                    <div class="flex items-center justify-between w-full py-5 font-medium border-b gap-3 cursor-pointer" data-accordion-target="#acc-{$c->id}-body" aria-expanded="false" aria-controls="acc-{$c->id}-body">
                                         <div class="flex items-center">
                                             <i class="fa-solid fa-user text-white bg-[#3f994f] p-2 me-2 rounded-md"></i> <span>{$c->name}</span>
                                         </div>
                                         <div class="flex items-center">
-                                            {if empty($c->term)}
-                                                <a href="{route('admin.customer', ['action' => 'book', 'id' => $c->id])}" type="button" class="button bg-white m-0 me-4 px-1.5 py-1">OBJEDNAT</a>
-                                            {/if}
                                             <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
                                             </svg>
                                         </div>
-                                    </button>
-                                </h2>
+                                    </div>
+                                </div>
                                 <div id="acc-{$c->id}-body" class="hidden" aria-labelledby="{$c->id}-heading">
-                                    <div class="border border-gray-200">
+                                    <div class="border border-gray-200 border-t-0">
                                         <ol class="divide-y divide-gray-200">
                                             <li class="p-3 sm:flex">
                                                 <a href="tel:{$c->phone}" class="flex items-center">
@@ -112,58 +108,83 @@
                                                     {$c->message}
                                                 </li>
                                             {/if}
+                                            <li class="p-3 sm:flex items-center">
+                                                <button class="button button-small" onclick="if(confirm('Označit {$c->name} jako objednaný?')) { window.location.href = {route('admin.customer', ['action' => 'book', 'id' => $c->id])}; }">
+                                                    JIŽ OBJEDNÁN
+                                                </button>
+                                                <button class="button button-small button-red" onclick="if(confirm('Opravdu smazat zákazníka {$c->name}?')) { window.location.href = {route('admin.customer', ['action' => 'delete', 'id' => $c->id])}; }">
+                                                    SMAZAT
+                                                </button>
+                                            </li>
                                         </ol>
                                     </div>
                                 </div>
                             {/foreach}
+                            {include '../partials/_paginator.latte', paginable => $customers}
                         </div>
                         <div class="section-heading">
                             <h2 class="section-title">ARCHIV</h2>
                         </div>
-                        <div id="accordion-collapse" data-accordion="collapse">
+                        <div>
                             {foreach $archivedCustomers as $customer}
-                                <h3 class="p-0">
-                                    <div class="flex items-center justify-between w-full p-5 font-medium border-b bg-white">
-                                        <div class="flex items-center">
-                                            <i class="fa-solid fa-check text-white bg-[#3f994f] p-2 me-2 rounded-md"></i> <span>{$customer->name}</span>
+                                <div class="p-0">
+                                    <div class="flex items-center w-full p-5 font-medium border-b bg-white">
+                                        <div class="w-1/{$customer->variant ? 3 : 2}">
+                                            <i class="hidden sm:inline-block fa-solid fa-check text-white bg-[#3f994f] p-2 me-2 rounded-md"></i> <span>{$customer->name}</span>
                                         </div>
-                                        <div class="flex items-center">
-                                            <i class="fa-solid fa-calendar text-white bg-[#3f994f] p-2 me-2 rounded-md"></i> <span>{$customer->term|date:'d. n. Y'}</span>
+                                        <div class="w-1/{$customer->variant ? 3 : 2}">
+                                            <i class="hidden sm:inline-block fa-solid fa-calendar text-white bg-[#3f994f] p-2 me-2 rounded-md"></i> <span>{$customer->term|date:'j. n. Y'}</span>
                                         </div>
-                                        <div class="flex items-center">
-                                            <i class="fa-solid fa-spa text-white bg-[#3f994f] p-2 me-2 rounded-md"></i> <span>{$customer->variant}</span>
+                                        {if $customer->variant !== null}
+                                        <div class="w-1/{$customer->variant ? 3 : 2}">
+                                            <i class="hidden sm:inline-block fa-solid fa-spa text-white bg-[#3f994f] p-2 me-2 rounded-md"></i> <span>{$customer->variant}</span>
                                         </div>
+                                        {/if}
                                     </div>
-                                </h3>
+                                </div>
                             {/foreach}
+                            <div class="w-full text-center my-4">
+                                <i class="fa-solid fa-ellipsis fa-2xl text-[#3f994f]"></i>
+                            </div>
                         </div>
                     </div>
                     <div class="col-1">
                         <div class="section-heading">
                             <h2 class="section-title">ÚPRAVA WEBU</h2>
                         </div>
-                        <div class="flex items-center">
-                            <div class="w-1/2">
-                                <div class="section-heading">
-                                    <h3 class="section-title">Terapeutické metody</h3>
-                                </div>
-                                <div class="w-3/4 my-2" v-for="(method, index) in methods" :key="index">
-                                    <div class="flex items-center">
-                                        <input type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg w-full block p-2.5" v-model="methods[index]" aria-label="" />
-                                        <button class="button m-0 ms-2 p-0 px-4 w-24 h-8 text-center" @click="removeMethod(index)">Smazat</button>
+                        <form method="post" action="{route('save-methods')}">
+                            <div class="flex-col sm:flex">
+                                <div class="w-full sm:w-1/2" style="min-width: 50%">
+                                    <div class="section-heading">
+                                        <h3 class="section-title">Terapeutické metody</h3>
                                     </div>
+                                    <div class="w-3/4 my-2" v-for="(method, index) in methods" :key="index">
+                                        <div class="flex items-center">
+                                            <input type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg w-full block p-2.5" v-model="methods[index]" name="methods[]" autocomplete="off" aria-label="" />
+                                            <button class="button button-small" @click="removeMethod(index)" type="button">Smazat</button>
+                                        </div>
+                                    </div>
+                                    <button @click="addMethod()" class="button button-small ms-0" type="button">PŘIDAT</button><br>
                                 </div>
-                                <button @click="pushMethods()" class="button me-4 bg-white">ULOŽIT</button>
-                            </div>
-                            <div class="w-1/2">
-                                <div class="section-heading">
-                                    <h3 class="section-title">Fyzikální terapie</h3>
+                                <div class="w-full sm:w-1/2" style="min-width: 50%">
+                                    <div class="section-heading">
+                                        <h3 class="section-title">Fyzikální terapie</h3>
+                                    </div>
+                                    <div class="w-3/4 my-2" v-for="(therapy, index) in therapies" :key="index">
+                                        <div class="flex items-center">
+                                            <input type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg w-full block p-2.5" v-model="therapies[index]" name="therapies[]" autocomplete="off" aria-label="" />
+                                            <button class="button button-small" @click="removeTherapy(index)" type="button">Smazat</button>
+                                        </div>
+                                    </div>
+                                    <button @click="addTherapy()" class="button button-small ms-0" type="button">PŘIDAT</button><br>
                                 </div>
                             </div>
-                        </div>
+                            <div class="w-full">
+                                <button class="button" type="submit">ULOŽIT</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
             </section>
         </main>
     </div>
@@ -173,7 +194,8 @@
             el: '#wrapper',
             data: {
                 preview: "",
-                methods: ['']
+                methods: {$methods},
+                therapies: {$therapies}
             },
             methods: {
                 addMethod: function() {
@@ -182,27 +204,11 @@
                 removeMethod: function(index) {
                     this.methods.splice(index, 1);
                 },
-                pushMethods: function() {
-                    fetch('/api/save-methods', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        },
-                        body: JSON.stringify({ methods: this.methods })
-                    })
-                    .then(response => response.json())
-                    .then(data => console.log(data))
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
-                }
-            },
-            watch: {
-                methods: function(newMethods) {
-                    if (newMethods[newMethods.length - 1] !== '') {
-                        this.addMethod();
-                    }
+                addTherapy: function() {
+                    this.therapies.push('');
+                },
+                removeTherapy: function(index) {
+                    this.therapies.splice(index, 1);
                 }
             }
         });

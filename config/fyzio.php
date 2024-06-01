@@ -1,6 +1,6 @@
 <?php return array (
-  'announcement' => 'Text',
+  'announcement' => 'Ve středu 14.6. bude probíhat inventura.',
   'icon' => 'Ikona',
   'color' => 'black',
-  'background' => '#3f994f',
+  'background' => '#212121',
 );

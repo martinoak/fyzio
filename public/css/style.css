@@ -876,12 +876,17 @@ h6 {
         padding: 15px 0 !important;
     }
 
-    .col-1, .col-2, .col-5, .col-7, .col-9, .col-11, .col-2-3, .col-3-4, .col-61, .col-38, .row {
+    .col-1, .col-2, .col-3, .col-5, .col-7, .col-9, .col-11, .col-2-3, .col-3-4, .col-61, .col-38, .row {
         width: 100%;
     }
 
-    .col-3, .col-4, .col-6, .col-8, .col-10, .col-12 {
-        width: 50%;
+    .gallery {
+        width: 50% !important;
+    }
+
+    .col-4, .col-6, .col-8, .col-10, .col-12 {
+        width: 75%;
+        margin: 0 auto;
     }
 
     /*-----------------Header Elements-----------------*/
