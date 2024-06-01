@@ -338,8 +338,12 @@
                 <div class="col-3">
                     <div style="box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); border-radius: 8px;background-color: white; padding: 40px 60px">
                         <h3 class="section-title form-heading">Napište nám!</h3>
+                        {foreach $errors->all() as $error}
+                            <p style="color: red;margin-bottom: 10px">{$error}</p>
+                        {/foreach}
                         <form id="demandForm" method="post" action="{route('sendMail')}">
                             {csrf_field()|noescape}
+                            <input type="hidden" name="_hpt">
                             <div style="margin-bottom: 25px">
                                 <label for="name" style="display: block">Jméno <i class="fa-solid fa-star-of-life fa-2xs text-primary"></i></label>
                                 <input
@@ -348,6 +352,7 @@
                                         id="name"
                                         placeholder="Jan Novák"
                                         class="contact-input"
+                                        value="{old('name')}"
                                         required
                                 />
                             </div>
@@ -359,6 +364,7 @@
                                         id="email"
                                         placeholder="jan@novak.cz"
                                         class="contact-input"
+                                        value="{old('email')}"
                                         required
                                 />
                             </div>
@@ -370,6 +376,7 @@
                                         id="phone"
                                         placeholder="+420 123 456 789"
                                         class="contact-input"
+                                        value="{old('phone')}"
                                         required
                                 />
                             </div>
@@ -381,6 +388,7 @@
                                         id="variant"
                                         class="contact-input text-primary"
                                         :value="variant"
+                                        value="{old('variant')}"
                                         style="font-weight: bold;"
                                 />
                             </div>
@@ -392,7 +400,7 @@
                                         class="contact-input"
                                         rows="1"
                                         placeholder="Dobrý den..."
-                                ></textarea>
+                                >{old('message')}</textarea>
                             </div>
                             <input type="hidden"
                                    name="variant"
