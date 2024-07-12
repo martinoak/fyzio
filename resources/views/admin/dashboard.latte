@@ -91,7 +91,7 @@
                                                 </a>
                                             </li>
                                             <li class="p-3 sm:flex">
-                                                <a href="tel:{$c->email|noescape}" class="flex items-center">
+                                                <a href="mailto:{$c->email|noescape}" class="flex items-center">
                                                     <i class="fa-solid fa-at fa-lg p-2 me-2"></i>
                                                     {$c->email|noescape}
                                                 </a>
@@ -109,9 +109,6 @@
                                                 </li>
                                             {/if}
                                             <li class="p-3 sm:flex items-center">
-                                                <button class="button button-small" onclick="if(confirm('Označit {$c->name} jako objednaný?')) { window.location.href = {route('admin.customer', ['action' => 'book', 'id' => $c->id])}; }">
-                                                    JIŽ OBJEDNÁN
-                                                </button>
                                                 <button class="button button-small button-red" onclick="if(confirm('Opravdu smazat zákazníka {$c->name}?')) { window.location.href = {route('admin.customer', ['action' => 'delete', 'id' => $c->id])}; }">
                                                     SMAZAT
                                                 </button>
@@ -121,31 +118,6 @@
                                 </div>
                             {/foreach}
                             {include '../partials/_paginator.latte', paginable => $customers}
-                        </div>
-                        <div class="section-heading">
-                            <h2 class="section-title">ARCHIV</h2>
-                        </div>
-                        <div>
-                            {foreach $archivedCustomers as $customer}
-                                <div class="p-0">
-                                    <div class="flex items-center w-full p-5 font-medium border-b bg-white">
-                                        <div class="w-1/{$customer->variant ? 3 : 2}">
-                                            <i class="hidden sm:inline-block fa-solid fa-check text-white bg-[#3f994f] p-2 me-2 rounded-md"></i> <span>{$customer->name}</span>
-                                        </div>
-                                        <div class="w-1/{$customer->variant ? 3 : 2}">
-                                            <i class="hidden sm:inline-block fa-solid fa-calendar text-white bg-[#3f994f] p-2 me-2 rounded-md"></i> <span>{$customer->term|date:'j. n. Y'}</span>
-                                        </div>
-                                        {if $customer->variant !== null}
-                                        <div class="w-1/{$customer->variant ? 3 : 2}">
-                                            <i class="hidden sm:inline-block fa-solid fa-spa text-white bg-[#3f994f] p-2 me-2 rounded-md"></i> <span>{$customer->variant}</span>
-                                        </div>
-                                        {/if}
-                                    </div>
-                                </div>
-                            {/foreach}
-                            <div class="w-full text-center my-4">
-                                <i class="fa-solid fa-ellipsis fa-2xl text-[#3f994f]"></i>
-                            </div>
                         </div>
                     </div>
                     <div class="col-1">

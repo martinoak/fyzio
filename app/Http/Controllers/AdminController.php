@@ -37,9 +37,7 @@ class AdminController extends Controller
 
     public function customer(string $action, string $id): RedirectResponse
     {
-        if ($action === 'book') {
-            DB::table('customers')->where('id', $id)->update(['term' => date('Y-m-d')]);
-        } elseif ($action === 'delete') {
+        if ($action === 'delete') {
             DB::table('customers')->where('id', $id)->delete();
         }
 
@@ -73,6 +71,6 @@ class AdminController extends Controller
             }
         }
 
-        return back()->with('success', 'Methods saved');
+        return back()->with('success', 'Informace aktualizovány.');
     }
 }

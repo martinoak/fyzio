@@ -22,6 +22,6 @@ class EmailsController extends Controller
 
         Customer::create($request->all());
 
-        return back()->with('success', 'Email odeslán!');
+        return redirect(url()->previous().'#contact')->with('success', 'Email odeslán!');
     }
 }
