@@ -311,86 +311,96 @@
                     </div>
                 </div>
                 <div class="col-3">
-                    <div style="box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); border-radius: 8px;background-color: white; padding: 40px 60px">
-                        <h3 class="section-title form-heading">Napište nám!</h3>
-                        {foreach $errors->all() as $error}
-                            <p style="color: red;margin-bottom: 10px">{$error}</p>
-                        {/foreach}
-                        <form id="demandForm" method="post" action="{route('sendMail')}">
-                            {csrf_field()|noescape}
-                            <input type="hidden" name="_hpt">
-                            <div style="margin-bottom: 25px">
-                                <label for="name" style="display: block">Jméno <i class="fa-solid fa-star-of-life fa-2xs text-primary"></i></label>
-                                <input
-                                        type="text"
-                                        name="name"
-                                        id="name"
-                                        placeholder="Jan Novák"
-                                        class="contact-input"
-                                        value="{old('name')}"
-                                        required
-                                />
-                            </div>
-                            <div style="margin-bottom: 25px">
-                                <label for="email" style="display: block">E-mail <i class="fa-solid fa-star-of-life fa-2xs text-primary"></i></label>
-                                <input
-                                        type="email"
-                                        name="email"
-                                        id="email"
-                                        placeholder="jan@novak.cz"
-                                        class="contact-input"
-                                        value="{old('email')}"
-                                        required
-                                />
-                            </div>
-                            <div style="margin-bottom: 25px">
-                                <label for="phone" style="display: block">Telefon <i class="fa-solid fa-star-of-life fa-2xs text-primary"></i></label>
-                                <input
-                                        type="text"
-                                        name="phone"
-                                        id="phone"
-                                        placeholder="+420 123 456 789"
-                                        class="contact-input"
-                                        value="{old('phone')}"
-                                        required
-                                />
-                            </div>
-                            <div style="margin-bottom: 25px" v-if="variant !== null">
-                                <label for="variant" style="display: block">Mám zájem o</i></label>
-                                <input
-                                        type="text"
-                                        name="variant"
-                                        id="variant"
-                                        class="contact-input text-primary"
-                                        :value="variant"
-                                        value="{old('variant')}"
-                                        style="font-weight: bold;"
-                                />
-                            </div>
-                            <div style="margin-bottom: 25px">
-                                <label for="message" style="display: block">Text zprávy</label>
-                                <textarea
-                                        name="message"
-                                        id="message"
-                                        class="contact-input"
-                                        rows="1"
-                                        placeholder="Dobrý den..."
-                                >{old('message')}</textarea>
-                            </div>
-                            <input type="hidden"
-                                   name="variant"
-                                   v-model="variant"
-                                   placeholder=""
-                            >
-                            <div style="display: flex; flex-direction: column; justify-content: center">
-                                <button type="submit" class="button" id="sendDemandButton" style="background-color: white">
-                                    ODESLAT POPTÁVKU
-                                </button>
-                                <p style="color: white; background-color: #3F994F; width: 100%; text-align: center" id="mailSuccess"></p>
-                            </div>
-                        </form>
+                    <div class="section-heading">
+                        <h3>OBJEDNÁNÍ</h3>
+                        <h2 class="section-title">Jak se objednat</h2>
+                        <p>Telefonicky: <a href="tel:+420317892865">+420 317 892 865</a></p>
+                        <p>Nebo nám napište e-mail na <a href="mailto:fyzioterapievlasim@seznam.cz">fyzioterapievlasim@seznam.cz</a></p>
+                        <p style="margin-top: 20px">Naše adresa:</p>
+                        <a target="_blank" href="https://maps.app.goo.gl/sw4Sb45ZN9jjeCRR8">Lidická 667, 258 01 Vlašim<br>(vchod B, zelená budova)</a>
                     </div>
                 </div>
+{*                <div class="col-3">*}
+{*                    <div style="box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); border-radius: 8px;background-color: white; padding: 40px 60px">*}
+{*                        <h3 class="section-title form-heading">Napište nám!</h3>*}
+{*                        {foreach $errors->all() as $error}*}
+{*                            <p style="color: red;margin-bottom: 10px">{$error}</p>*}
+{*                        {/foreach}*}
+{*                        <form id="demandForm" method="post" action="{route('sendMail')}">*}
+{*                            {csrf_field()|noescape}*}
+{*                            <input type="hidden" name="_hpt">*}
+{*                            <div style="margin-bottom: 25px">*}
+{*                                <label for="name" style="display: block">Jméno <i class="fa-solid fa-star-of-life fa-2xs text-primary"></i></label>*}
+{*                                <input*}
+{*                                        type="text"*}
+{*                                        name="name"*}
+{*                                        id="name"*}
+{*                                        placeholder="Jan Novák"*}
+{*                                        class="contact-input"*}
+{*                                        value="{old('name')}"*}
+{*                                        required*}
+{*                                />*}
+{*                            </div>*}
+{*                            <div style="margin-bottom: 25px">*}
+{*                                <label for="email" style="display: block">E-mail <i class="fa-solid fa-star-of-life fa-2xs text-primary"></i></label>*}
+{*                                <input*}
+{*                                        type="email"*}
+{*                                        name="email"*}
+{*                                        id="email"*}
+{*                                        placeholder="jan@novak.cz"*}
+{*                                        class="contact-input"*}
+{*                                        value="{old('email')}"*}
+{*                                        required*}
+{*                                />*}
+{*                            </div>*}
+{*                            <div style="margin-bottom: 25px">*}
+{*                                <label for="phone" style="display: block">Telefon <i class="fa-solid fa-star-of-life fa-2xs text-primary"></i></label>*}
+{*                                <input*}
+{*                                        type="text"*}
+{*                                        name="phone"*}
+{*                                        id="phone"*}
+{*                                        placeholder="+420 123 456 789"*}
+{*                                        class="contact-input"*}
+{*                                        value="{old('phone')}"*}
+{*                                        required*}
+{*                                />*}
+{*                            </div>*}
+{*                            <div style="margin-bottom: 25px" v-if="variant !== null">*}
+{*                                <label for="variant" style="display: block">Mám zájem o</i></label>*}
+{*                                <input*}
+{*                                        type="text"*}
+{*                                        name="variant"*}
+{*                                        id="variant"*}
+{*                                        class="contact-input text-primary"*}
+{*                                        :value="variant"*}
+{*                                        value="{old('variant')}"*}
+{*                                        style="font-weight: bold;"*}
+{*                                />*}
+{*                            </div>*}
+{*                            <div style="margin-bottom: 25px">*}
+{*                                <label for="message" style="display: block">Text zprávy</label>*}
+{*                                <textarea*}
+{*                                        name="message"*}
+{*                                        id="message"*}
+{*                                        class="contact-input"*}
+{*                                        rows="1"*}
+{*                                        placeholder="Dobrý den..."*}
+{*                                >{old('message')}</textarea>*}
+{*                            </div>*}
+{*                            <input type="hidden"*}
+{*                                   name="variant"*}
+{*                                   v-model="variant"*}
+{*                                   placeholder=""*}
+{*                            >*}
+{*                            <div style="display: flex; flex-direction: column; justify-content: center">*}
+{*                                <button type="submit" class="button" id="sendDemandButton" style="background-color: white">*}
+{*                                    ODESLAT POPTÁVKU*}
+{*                                </button>*}
+{*                                <p style="color: white; background-color: #3F994F; width: 100%; text-align: center" id="mailSuccess"></p>*}
+{*                            </div>*}
+{*                        </form>*}
+{*                    </div>*}
+{*                </div>*}
             </div>
         </section>
 
@@ -413,28 +423,28 @@
     <script src="{asset('js/images-loaded.min.js')}?m={filemtime(public_path('js/images-loaded.min.js'))}"></script>
     <script src="{asset('js/lightbox.min.js')}?m={filemtime(public_path('js/lightbox.min.js'))}"></script>
     <script src="{asset('js/site.js')}?m={filemtime(public_path('js/site.js'))}"></script>
-    <script type="text/javascript">
-        document.getElementById("demandForm").addEventListener("submit", function() {
-            document.getElementById("sendDemandButton").setAttribute("disabled", "disabled");
-            setTimeout(function() {
-                document.getElementById("sendDemandButton").removeAttribute("disabled");
-            }, 2000);
-        });
-    </script>
-    <script>
-        (function(){
-            let vue = new Vue({
-                el: '#wrapper',
-                data: {
-                    variant: null,
-                },
-                methods: {
-                    setVariant: function (e) {
-                        this.variant = e.target.dataset.variant;
-                        console.log(this.variant)
-                    }
-                }
-            });
-        })();
-    </script>
+{*    <script type="text/javascript">*}
+{*        document.getElementById("demandForm").addEventListener("submit", function() {*}
+{*            document.getElementById("sendDemandButton").setAttribute("disabled", "disabled");*}
+{*            setTimeout(function() {*}
+{*                document.getElementById("sendDemandButton").removeAttribute("disabled");*}
+{*            }, 2000);*}
+{*        });*}
+{*    </script>*}
+{*    <script>*}
+{*        (function(){*}
+{*            let vue = new Vue({*}
+{*                el: '#wrapper',*}
+{*                data: {*}
+{*                    variant: null,*}
+{*                },*}
+{*                methods: {*}
+{*                    setVariant: function (e) {*}
+{*                        this.variant = e.target.dataset.variant;*}
+{*                        console.log(this.variant)*}
+{*                    }*}
+{*                }*}
+{*            });*}
+{*        })();*}
+{*    </script>*}
 {/block}

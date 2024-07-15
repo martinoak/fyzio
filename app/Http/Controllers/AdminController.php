@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\UpdateConfigFile;
 use App\Models\{Customer, Method, Therapy};
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,13 +25,12 @@ class AdminController extends Controller
 
     public function announcement(Request $request): RedirectResponse
     {
-        $config = config('fyzio');
-        $config['announcement'] = $request->input('message');
-        $config['background'] = $request->input('background') ?? '#f5b648';
+        $configData = [
+            'message' => $request->input('message'),
+            'background' => $request->input('background') ?? '#f5b648',
+        ];
 
-        $configFile = fopen(config_path('fyzio.php'), 'w');
-        fwrite($configFile, '<?php return ' . var_export($config, true) . ';');
-        fclose($configFile);
+        UpdateConfigFile::dispatch($configData);
 
         return to_route('admin.dashboard');
     }
