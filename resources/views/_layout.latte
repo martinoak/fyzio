@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-    {if url()->current() === env('APP_URL')}
+    {if env('APP_ENV') === 'production'}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3LF423HH4W"></script>
     <script n:syntax="off">
         window.dataLayer = window.dataLayer || [];
