@@ -27,8 +27,12 @@ class AdminController extends Controller
     {
         $configData = [
             'message' => $request->input('message'),
-            'background' => $request->input('background') ?? '#f5b648',
+            'background' => $request->input('background') ?? '#f5b648'
         ];
+
+        if ($request->filled('end')) {
+            $configData['end'] = strtotime($request->input('end'));
+        }
 
         UpdateConfigFile::dispatch($configData);
 

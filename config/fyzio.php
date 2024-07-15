@@ -1,6 +1,5 @@
 <?php return array (
-  'announcement' => 'st',
-  'icon' => 'Ikona',
-  'color' => 'black',
+  'announcement' => 'test',
   'background' => '#3f994f',
+  'end' => 1721026140,
 );

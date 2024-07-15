@@ -1,4 +1,4 @@
-{if !empty(config('fyzio.announcement'))}
+{if !empty(config('fyzio.announcement')) && (empty(config('fyzio.end')) || time() < config('fyzio.end'))}
     <div style="background-color: {config('fyzio.background')|noescape};width: 100%;font-weight:bold;text-align:center;color:white;padding:10px 0">
         {config('fyzio.announcement')|noescape}
     </div>
