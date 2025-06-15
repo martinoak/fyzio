@@ -23,6 +23,22 @@ class AdminController extends Controller
             ]);
     }
 
+    public function log(): View
+    {
+        $log = file_get_contents(storage_path('logs/laravel.log'));
+
+        return view('admin.log', compact('log'));
+    }
+
+    public function logClear(): RedirectResponse
+    {
+        $log = file(storage_path('logs/laravel.log'));
+        $log = array_slice($log, 0, 200); // keep first 200 lines
+        file_put_contents(storage_path('logs/laravel.log'), implode('', $log));
+
+        return to_route('admin.log');
+    }
+
     public function announcement(Request $request): RedirectResponse
     {
         $configData = [
