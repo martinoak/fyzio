@@ -1,5 +1,5 @@
 <?php return array (
-  'announcement' => 'Test',
+  'announcement' => NULL,
   'background' => '#f5b648',
   'end' => NULL,
 );
