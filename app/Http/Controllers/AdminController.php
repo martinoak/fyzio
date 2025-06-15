@@ -33,7 +33,7 @@ class AdminController extends Controller
     public function logClear(): RedirectResponse
     {
         $log = file(storage_path('logs/laravel.log'));
-        $log = array_slice($log, 0, 200); // keep first 200 lines
+        $log = array_slice($log, -350); // ponechat posledních 350 řádků
         file_put_contents(storage_path('logs/laravel.log'), implode('', $log));
 
         return to_route('admin.log');
