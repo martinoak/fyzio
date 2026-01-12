@@ -169,132 +169,46 @@
                         <h3>CENÍK</h3>
                         <h2 class="section-title">Co nabízíme?</h2>
                     </div>
-                    <div class="flex space-between sm-flex-col sm-padding">
-                        <div class="col-4 icon-block icon-top">
-                            <div class="icon">
-                                <i class="fa-solid fa-person-walking fa-2xl"></i>
-                            </div>
-                            <div class="icon-block-description">
-                                <h4>Individuální fyzioterapie</h4>
-                                <div class="pricing-list">
-                                    <div class="flex space-between">
-                                        <p>30 min</p>
-                                        <p>600 Kč</p>
+                    {php $priceGroups = $prices->chunk(4)}
+                    {foreach $priceGroups as $group}
+                        <div class="flex space-between sm-flex-col sm-padding">
+                            {foreach $group as $serviceName => $serviceItems}
+                                <div class="col-4 icon-block icon-top">
+                                    <div class="icon">
+                                        <i class="{$serviceItems->first()->icon} fa-2xl"></i>
                                     </div>
-                                    <hr>
-                                    <div class="flex space-between">
-                                        <p>60 min</p>
-                                        <p>1 200 Kč</p>
-                                    </div>
-                                </div>
-{*                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Individuální fyzioterapie">OBJEDNAT</a>*}
-                            </div>
-                        </div>
-                        <div class="col-4 icon-block icon-top">
-                            <div class="icon">
-                                <i class="fa-solid fa-spa fa-2xl"></i>
-                            </div>
-                            <div class="icon-block-description">
-                                <h4>Přístrojová lymfodrenáž</h4>
-                                <div class="pricing-list">
-                                    <div class="flex space-between">
-                                        <p>30 min</p>
-                                        <p>150 Kč</p>
-                                    </div>
-                                    <hr>
-                                    <div class="flex space-between">
-                                        <p>60 min</p>
-                                        <p>300 Kč</p>
-                                    </div>
-                                </div>
-{*                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Přístrojová lymfodrenáž">OBJEDNAT</a>*}
-                            </div>
-                        </div>
-                        <div class="col-4 icon-block icon-top">
-                            <div class="icon">
-                                <i class="fa-solid fa-spa fa-2xl"></i>
-                            </div>
-                            <div class="icon-block-description">
-                                <h4>Manuální lymfodrenáž</h4>
-                                <div class="flex space-between pricing-list">
-                                    <p>60 min</p>
-                                    <p>1 200 Kč</p>
-                                </div>
-{*                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Manuální lymfodrenáž">OBJEDNAT</a>*}
-                            </div>
-                        </div>
-                        <div class="col-4 icon-block icon-top">
-                            <div class="icon">
-                                <i class="fa-solid fa-person-dots-from-line fa-2xl"></i>
-                            </div>
-                            <div class="icon-block-description">
-                                <h4>Vojtova reflexní terapie</h4>
-                                <div class="flex space-between pricing-list">
-                                    <p>60 min</p>
-                                    <p>1 200 Kč</p>
-                                </div>
-{*                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Vojtova reflexní terapie">OBJEDNAT</a>*}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex space-between sm-flex-col sm-padding">
-                        <div class="col-4 icon-block icon-top">
-                            <div class="icon">
-                                <i class="fa-solid fa-bolt fa-2xl"></i>
-                            </div>
-                            <div class="icon-block-description">
-                                <h4>Elektroterapie</h4>
-                                <div class="pricing-list">
-                                    <p>100 Kč</p>
-                                </div>
-{*                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Elektroterapie">OBJEDNAT</a>*}
-                            </div>
-                        </div>
-                        <div class="col-4 icon-block icon-top">
-                            <div class="icon">
-                                <i class="fa-solid fa-tape fa-2xl"></i>
-                            </div>
-                            <div class="icon-block-description">
-                                <h4>Tejpování</h4>
-                                <div style="min-height: 52px">
-                                    <div class="flex space-between">
-                                        <p>Nalepení</p>
-                                        <p>100 Kč</p>
-                                    </div>
-                                    <hr>
-                                    <div class="flex space-between">
-                                        <p>Použitý materiál à 1cm</p>
-                                        <p>1,50 Kč</p>
+                                    <div class="icon-block-description">
+                                        <h4>{$serviceName}</h4>
+                                        {if $serviceItems->count() > 1}
+                                            <div class="pricing-list">
+                                                {foreach $serviceItems as $index => $item}
+                                                    {if $index > 0}<hr>{/if}
+                                                    <div class="flex space-between" style="width: 100%">
+                                                        <p>{$item->duration}</p>
+                                                        <p>{number_format($item->price, ($item->price == floor($item->price)) ? 0 : 2, ',', ' ')} Kč</p>
+                                                    </div>
+                                                {/foreach}
+                                            </div>
+                                        {else}
+                                            <div class="pricing-list" style="display: flex; justify-content: center; min-height: 52px">
+                                                {if $serviceItems->first()->description}
+                                                    <p>{$serviceItems->first()->description}</p>
+                                                {elseif $serviceItems->first()->duration}
+                                                    <div class="flex space-between" style="width: 100%">
+                                                        <p>{$serviceItems->first()->duration}</p>
+                                                        <p>{number_format($serviceItems->first()->price, ($serviceItems->first()->price == floor($serviceItems->first()->price)) ? 0 : 2, ',', ' ')} Kč</p>
+                                                    </div>
+                                                {else}
+                                                    <p>{number_format($serviceItems->first()->price, ($serviceItems->first()->price == floor($serviceItems->first()->price)) ? 0 : 2, ',', ' ')} Kč</p>
+                                                {/if}
+                                            </div>
+                                        {/if}
+{*                                        <a href="#contact" class="button" v-on:click="setVariant" data-variant="{$serviceName}">OBJEDNAT</a>*}
                                     </div>
                                 </div>
-{*                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Tejpování">OBJEDNAT</a>*}
-                            </div>
+                            {/foreach}
                         </div>
-                        <div class="col-4 icon-block icon-top">
-                            <div class="icon">
-                                <i class="fa-solid fa-check-to-slot fa-2xl"></i>
-                            </div>
-                            <div class="icon-block-description">
-                                <h4>Potvrzení pro pojišťovnu</h4>
-                                <div style="display: flex; justify-content: center; min-height: 52px">
-                                    <p>100 Kč</p>
-                                </div>
-{*                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Potvrzení pro pojišťovnu">OBJEDNAT</a>*}
-                            </div>
-                        </div>
-                        <div class="col-4 icon-block icon-top">
-                            <div class="icon">
-                                <i class="fa-solid fa-hand-holding-heart fa-2xl"></i>
-                            </div>
-                            <div class="icon-block-description">
-                                <h4>Dárkové poukazy</h4>
-                                <div style="display: flex; justify-content: center; min-height: 52px">
-                                    <p>od 500 Kč</p>
-                                </div>
-{*                                <a href="#contact" class="button" v-on:click="setVariant" data-variant="Dárkové poukazy">OBJEDNAT</a>*}
-                            </div>
-                        </div>
-                    </div>
+                    {/foreach}
                     <p>Péči lze čerpat i z fondu <span style="color: #3F994F; font-weight: bold">FKSP</span>.</p>
                 </aside>
             </section>

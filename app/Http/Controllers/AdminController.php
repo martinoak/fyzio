@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\UpdateConfigFile;
-use App\Models\{Customer, Method, Therapy};
+use App\Models\{Customer, Method, Therapy, Price};
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -92,5 +92,43 @@ class AdminController extends Controller
         }
 
         return back()->with('success', 'Informace aktualizovány.');
+    }
+
+    public function pricing(Request $request): View|RedirectResponse
+    {
+        if ($request->isMethod('post')) {
+            // Validate the request
+            $request->validate([
+                'prices.*.service_name' => 'required|string|max:255',
+                'prices.*.duration' => 'nullable|string|max:50',
+                'prices.*.price' => 'required|numeric|min:0',
+                'prices.*.description' => 'nullable|string',
+                'prices.*.icon' => 'required|string|max:100',
+            ]);
+
+            // Clear existing prices
+            Price::truncate();
+
+            // Save new prices
+            foreach ($request->input('prices', []) as $index => $priceData) {
+                if (!empty($priceData['service_name']) && !empty($priceData['price'])) {
+                    Price::create([
+                        'service_name' => $priceData['service_name'],
+                        'duration' => $priceData['duration'] ?? null,
+                        'price' => $priceData['price'],
+                        'description' => $priceData['description'] ?? null,
+                        'icon' => $priceData['icon'],
+                        'order' => $index + 1,
+                    ]);
+                }
+            }
+
+            return back()->with('success', 'Ceník byl úspěšně aktualizován.');
+        }
+
+        // GET request - show the pricing form
+        $prices = Price::orderBy('order')->get();
+
+        return view('admin.pricing', compact('prices'));
     }
 }

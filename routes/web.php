@@ -19,4 +19,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::any('admin/customer/{action}/{id}', [Controllers\AdminController::class, 'customer'])->name('admin.customer');
 
     Route::post('save-methods', [Controllers\AdminController::class, 'saveMethods'])->name('save-methods');
+
+    Route::match(['get', 'post'], 'admin/pricing', [Controllers\AdminController::class, 'pricing'])->name('admin.pricing');
 });
