@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nový dotaz</title>
+    <title>Potvrzení odeslání formuláře</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
         * {
@@ -98,7 +98,7 @@
                             <table style="width:100%;max-width:100%;" width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
                                 <tr>
                                     <td style="background-position:center top;background-size:cover;background-repeat: no-repeat; padding: 20px 0">
-                                        <img src="{asset('images/logo.png')}" style="max-width: 20%" alt="">
+                                        <img src="{{ asset('images/logo.png') }}" style="max-width: 20%" alt="">
                                     </td>
                                 </tr>
                             </table>
@@ -113,27 +113,18 @@
             <td style="background-color: #F1F1F1;" valign="middle" align="center">
                 <table class="row" style="width:600px;max-width:600px;" width="600" cellspacing="0" cellpadding="0" border="0" align="center">
                     <tr>
-                        <td style="background-image: url({asset('images/banner-images/banner-image-1.png')|noescape});background-size: contain; background-repeat: no-repeat; background-position: bottom; padding-bottom: 20px" bgcolor="#FFFFFF" align="center">
+                        <td style="background-image: url({!! asset('images/banner-images/banner-image-1.png') !!});background-size: contain; background-repeat: no-repeat; background-position: bottom" bgcolor="#FFFFFF" align="center">
                             <table class="row" style="width:520px;max-width:520px;" width="520" cellspacing="0" cellpadding="0" border="0" align="center">
                                 <tr>
                                     <td class="container-padding" align="center">
                                         <table style="width:100%; max-width:100%;" width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
                                             <tr>
-                                                <td style="font-family:'Poppins', sans-serif;color:#191919;font-size:28px;line-height:60px;font-weight:700;letter-spacing:0;padding: 0 0 20px;" valign="middle" align="center">Nový dotaz z formuláře<br></td>
+                                                <td style="color: black;font-family:'Poppins', sans-serif;font-size:28px;line-height:60px;font-weight:700;letter-spacing:0;padding: 0 0 10px;" valign="middle" align="center">Potvrzení odeslání formuláře<br></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-family:'Poppins', sans-serif;color:black;font-size:14px;line-height:24px;font-weight:400;letter-spacing:0;padding: 0 0 30px;">
-                                                    <strong class="text-primary">Jméno: </strong>{$data['name']}<br>
-                                                    <strong class="text-primary">Email: </strong>{$data['email']}<br>
-                                                    <strong class="text-primary">Telefon: </strong>{$data['phone']}<br>
-                                                    {ifset $data['variant']}
-                                                        <strong class="text-primary">Varianta: </strong>{$data['variant']}<br>
-                                                    {/ifset}
-                                                    {ifset $data['message']}
-                                                        <p style="max-width: 50%;margin: 0; padding: 0">
-                                                            <strong class="text-primary">Text zprávy: </strong>{$data['message']}
-                                                        </p>
-                                                    {/ifset}
+                                                <td style="font-family:'Poppins', sans-serif;color:#939393;font-size:14px;line-height:24px;font-weight:400;letter-spacing:0;padding: 0 0 150px;" valign="middle" align="center">
+                                                    Váš dotaz jsme přijali a brzy se Vám ozveme.<br>
+                                                    <strong class="text-primary">Fyzioterapie Vlašim</strong>
                                                 </td>
                                             </tr>
                                         </table>
@@ -157,7 +148,7 @@
                                     <td class="container-padding" align="center">
                                         <table style="width:100%; max-width:100%;" width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
                                             <tr>
-                                                <td style="font-family:'Poppins', sans-serif;color:#939393;font-size:14px;line-height:40px;font-weight:400;letter-spacing:0;" valign="middle" align="center">Odesláno {date('d. m. Y \v H:i')}</td>
+                                                <td style="font-family:'Poppins', sans-serif;color:#939393;font-size:14px;line-height:40px;font-weight:400;letter-spacing:0;" valign="middle" align="center">Odesláno {{ date('d. m. Y \v H:i') }}</td>
                                             </tr>
                                         </table>
                                     </td>

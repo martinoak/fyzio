@@ -1,27 +1,27 @@
-{layout '../_layout.latte'}
+@extends('_layout')
 
-{block content}
+@section('content')
     <div>
         <section id="contact" class="scrollto clearfix">
             <div class="row clearfix" style="display: flex; justify-content: center; align-items: center; height: 100vh">
                 <div class="col-2">
                     <div style="box-shadow: 0 4px 28px rgba(0, 0, 0, 0.5); border-radius: 8px;background-color: white; padding: 40px 60px">
-                        {if session()->has('error')}
+                        @if(session()->has('error'))
                             <div style="text-align: center; color: red; font-weight: bold">
                                 <div class="alert alert-danger" role="alert">
-                                    {session('error')}
+                                    {{ session('error') }}
                                 </div>
                             </div>
-                        {/if}
-                        <form method="post" action="{route('authenticate')}">
-                            {csrf_field()|noescape}
+                        @endif
+                        <form method="post" action="{{ route('authenticate') }}">
+                            @csrf
                             <div style="margin-bottom: 25px">
                                 <label for="name" style="display: block">Jméno</label>
                                 <input
                                         type="text"
                                         name="name"
                                         class="contact-input"
-                                        value="{old('name')}"
+                                        value="{{ old('name') }}"
                                         required
                                 />
                             </div>
@@ -31,7 +31,7 @@
                                         type="password"
                                         name="password"
                                         class="contact-input"
-                                        value="{old('password')}"
+                                        value="{{ old('password') }}"
                                         required
                                 />
                             </div>
@@ -46,5 +46,4 @@
             </div>
         </section>
     </div>
-{/block}
-
+@endsection

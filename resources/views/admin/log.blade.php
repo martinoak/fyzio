@@ -1,24 +1,24 @@
-{layout '../_layout.latte'}
+@extends('_layout')
 
-{block head}
-    <link rel="stylesheet" href="{asset('css/tailwind.css')}?m={filemtime(public_path('css/tailwind.css'))}">
-{/block}
+@section('head')
+    <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}?m={{ filemtime(public_path('css/tailwind.css')) }}">
+@endsection
 
-{block content}
+@section('content')
     <div id="wrapper">
         <main id="content">
             <section id="about" class="introduction scrollto">
                 <div class="col-1">
                     <div class="section-heading">
                         <h2 class="section-title">LOG</h2>
-                        <a href="{route('admin.log.clear')}">
+                        <a href="{{ route('admin.log.clear') }}">
                             <button class="button button-red">
                                 SMAZAT
                             </button>
                         </a>
                     </div>
                     <div class="w-full h-96 overflow-y-auto">
-                        <pre>{$log}</pre>
+                        <pre>{{ $log }}</pre>
                     </div>
 
                 </div>
@@ -26,8 +26,8 @@
             </main>
         </div>
     </div>
-{/block}
+@endsection
 
-{block bottomscripts}
+@section('bottomscripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-{/block}
+@endsection

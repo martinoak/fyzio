@@ -8,33 +8,33 @@
     <meta name="description" content="Nabízíme diagnostiku a terapii náhle vzniklých i chornických obtíží pohybového aparátu, vadného držení těla, a také se zaměřujeme na poúrazovou a před i pooperační péči.">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-    {if env('APP_ENV') === 'production'}
+    @if(env('APP_ENV') === 'production')
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3LF423HH4W"></script>
-    <script n:syntax="off">
+    <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
         gtag('config', 'G-3LF423HH4W');
     </script>
-    {/if}
+    @endif
 
-    <link rel="apple-touch-icon" type="image/png" href="{asset('apple-icon.png')}"/>
-    <link rel="shortcut icon" href="{asset('images/favicon.ico')}"/>
-    <link rel="stylesheet" href="{asset('css/style.css')}?m={filemtime(public_path('css/style.css'))}">
-    <link rel="stylesheet" href="{asset('css/namari-color.css')}?m={filemtime(public_path('css/namari-color.css'))}">
+    <link rel="apple-touch-icon" type="image/png" href="{{ asset('apple-icon.png') }}"/>
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}?m={{ filemtime(public_path('css/style.css')) }}">
+    <link rel="stylesheet" href="{{ asset('css/namari-color.css') }}?m={{ filemtime(public_path('css/namari-color.css')) }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
-    <link href="{asset('css/animate.css')}?m={filemtime(public_path('css/animate.css'))}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/animate.css') }}?m={{ filemtime(public_path('css/animate.css')) }}" rel="stylesheet" type="text/css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16"></script>
-    {block head}{/block}
+    @yield('head')
 </head>
 <body>
-    {include content}
+    @yield('content')
 
-    {block bottomscripts}{/block}
+    @yield('bottomscripts')
 </body>
 </html>

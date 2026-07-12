@@ -16,8 +16,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('admin/log/clear', [Controllers\AdminController::class, 'logClear'])->name('admin.log.clear');
     Route::match(['get', 'post'], 'update-announcement', [Controllers\AdminController::class, 'announcement'])->name('set-announcement');
 
-    Route::any('admin/customer/{action}/{id}', [Controllers\AdminController::class, 'customer'])->name('admin.customer');
-
     Route::post('save-methods', [Controllers\AdminController::class, 'saveMethods'])->name('save-methods');
 
     Route::match(['get', 'post'], 'admin/pricing', [Controllers\AdminController::class, 'pricing'])->name('admin.pricing');

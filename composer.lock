@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "65d94a264b241b5800468c0d255f4542",
+    "content-hash": "31ad2ed69260a11832e0d5824887ce3a",
     "packages": [
         {
             "name": "brick/math",
@@ -1520,92 +1520,6 @@
             "time": "2025-01-27T14:24:01+00:00"
         },
         {
-            "name": "latte/latte",
-            "version": "v3.0.21",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nette/latte.git",
-                "reference": "9302610109836aeb2e540cf2e457414e52597789"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nette/latte/zipball/9302610109836aeb2e540cf2e457414e52597789",
-                "reference": "9302610109836aeb2e540cf2e457414e52597789",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "ext-tokenizer": "*",
-                "php": "8.0 - 8.4"
-            },
-            "conflict": {
-                "nette/application": "<3.1.7",
-                "nette/caching": "<3.1.4"
-            },
-            "require-dev": {
-                "nette/php-generator": "^4.0",
-                "nette/tester": "^2.5",
-                "nette/utils": "^4.0",
-                "phpstan/phpstan": "^1",
-                "tracy/tracy": "^2.10"
-            },
-            "suggest": {
-                "ext-fileinfo": "to use filter |datastream",
-                "ext-iconv": "to use filters |reverse, |substring",
-                "ext-intl": "to use Latte\\Engine::setLocale()",
-                "ext-mbstring": "to use filters like lower, upper, capitalize, ...",
-                "nette/php-generator": "to use tag {templatePrint}",
-                "nette/utils": "to use filter |webalize"
-            },
-            "bin": [
-                "bin/latte-lint"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0-only",
-                "GPL-3.0-only"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "https://davidgrudl.com"
-                },
-                {
-                    "name": "Nette Community",
-                    "homepage": "https://nette.org/contributors"
-                }
-            ],
-            "description": "☕ Latte: the intuitive and fast template engine for those who want the most secure PHP sites. Introduces context-sensitive escaping.",
-            "homepage": "https://latte.nette.org",
-            "keywords": [
-                "context-sensitive",
-                "engine",
-                "escaping",
-                "html",
-                "nette",
-                "security",
-                "template",
-                "twig"
-            ],
-            "support": {
-                "issues": "https://github.com/nette/latte/issues",
-                "source": "https://github.com/nette/latte/tree/v3.0.21"
-            },
-            "time": "2025-05-17T05:59:24+00:00"
-        },
-        {
             "name": "league/commonmark",
             "version": "2.7.0",
             "source": {
@@ -2155,61 +2069,6 @@
                 }
             ],
             "time": "2024-12-08T08:18:47+00:00"
-        },
-        {
-            "name": "martinoak/laravel-latte",
-            "version": "2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/martinoak/laravel-latte.git",
-                "reference": "2d25b27cdc1443540f19aa0394f8610fed436d75"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/martinoak/laravel-latte/zipball/2d25b27cdc1443540f19aa0394f8610fed436d75",
-                "reference": "2d25b27cdc1443540f19aa0394f8610fed436d75",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^12.0",
-                "latte/latte": "^3.0",
-                "php": "^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "MartinOak\\LaravelLatte\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "MartinOak\\LaravelLatte\\": "src/LaravelLatte"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Martin Dub",
-                    "email": "oakk.martin@gmail.com"
-                }
-            ],
-            "description": "Latte template engine for Laravel 10+",
-            "keywords": [
-                "laravel",
-                "latte",
-                "template",
-                "view"
-            ],
-            "support": {
-                "issues": "https://github.com/martinoak/laravel-latte/issues",
-                "source": "https://github.com/martinoak/laravel-latte/tree/2.3"
-            },
-            "time": "2025-06-15T15:27:52+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -8206,12 +8065,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.2"
+        "php": "^8.5"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }

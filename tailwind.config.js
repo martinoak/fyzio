@@ -1,6 +1,6 @@
 module.exports = {
     darkMode: 'class',
-    content: ["./resources/views/**/*.latte"],
+    content: ["./resources/views/**/*.blade.php"],
     theme: {
         extend: {},
     },
